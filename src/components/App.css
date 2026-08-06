@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+:root{
+    color: white;
+    overflow-wrap:break-word;
+}
+
+@theme{
+    --color-background: #FAF9F6;
+    --color-card-light: #528585;
+    --color-card-medium: #225252;
+    --color-card-dark: #0B3333;
+
+}
