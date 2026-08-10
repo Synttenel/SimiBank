@@ -25,15 +25,15 @@ function MainMenu({onNavigate, handleFun, day, money, card}: Props) {
     <>
       
       <div className="flex flex-col gap-10 justify-top items-center h-screen w-screen bg-background">
-        <ProfileBar onClick={()=> onNavigate("profile")} day={day} />
+        <ProfileBar onClickProfile={()=> onNavigate("profile")} onClickConfiguration={() => onNavigate("configuration")} day={day} />
 
-        <CurrencyBar money={money} />
+        <CurrencyBar onClickCurrency={() => onNavigate("currency")} money={money} />
 
-        <CardBar card={card} />
+        <CardBar onClickCard={() => onNavigate("card")} card={card} />
 
       </div>
 
-      <NavBar onClick={() => onNavigate("shop")} nextDay={() => handleFun()}   />
+      <NavBar onClickShop={() => onNavigate("shop")} onClickItems={() => onNavigate("items")} nextDay={() => handleFun()}   />
     </>
   )
 }

@@ -3,16 +3,18 @@ import { useState } from "react";
 import './App.css';
 
 interface Props{
-  onClick: () => void;
+  onClickShop: () => void;
+  onClickItems: () => void;
   nextDay: () => void;
 }
 
-function NavBar({onClick, nextDay}: Props){
+function NavBar({onClickShop, onClickItems, nextDay}: Props){
 
   return(
     <>
         <div className="flex fixed bottom-0 justify-around items-center bg-card-light p-5 pb-6 w-screen h-18 rounded-t-2xl min-sm: shadow-2xs">
-          <button className="flex flex-col justify-around items-center">
+          <button className="flex flex-col justify-around items-center"
+          onClick={() => onClickItems()}>
             <img className="w-10 h-10" src="https://img.icons8.com/?size=100&id=55432&format=png&color=FFFFFF"/>
             <p className="font-bold">Itens</p>
           </button>
@@ -24,7 +26,7 @@ function NavBar({onClick, nextDay}: Props){
           <button className="flex flex-col justify-around items-center">
             <img className="w-10 h-10" src="https://img.icons8.com/?size=100&id=77030&format=png&color=FFFFFF"/>
             <p className="font-bold"
-            onClick={() => onClick()}>Loja</p>
+            onClick={() => onClickShop()}>Loja</p>
           </button>
         </div>
     </>

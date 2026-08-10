@@ -5,11 +5,15 @@ import './App.css'
 
 import Start from "./Start"
 import MainMenu from "./MainMenu"
+import Configuration from './Configuration'
 import ProfileBar from "./ProfileBar"
 import CurrencyBar from './CurrencyBar'
+import CurrencyHistory from './CurrencyHistory'
 import CardBar from './CardBar'
+import CardHistory from './CardHistory'
 import NavBar from './NavBar'
 import UserCustom from './UserCustom'
+import Items from './Items'
 import Shop from './Shop'
 
 
@@ -42,12 +46,17 @@ function App() {
     case "shop":
       return <Shop onNavigate={setScreen} />;
     case "configuration":
+      return <Configuration onNavigate={setScreen} />
+    case "items":
+      return <Items onNavigate={setScreen} />;
     case "start":
-      return <Start  onNavigate={setScreen}/>;
+      return <Start onNavigate={setScreen} />;
     case "profile":
-      return <UserCustom  onNavigate={setScreen}/>;
+      return <UserCustom onNavigate={setScreen} />;
     case "currency":
+      return <CurrencyHistory onNavigate={setScreen} />;
     case "card":
+      return <CardHistory onNavigate={setScreen} />;
   }
 
   return (
