@@ -1,23 +1,26 @@
 import { useState } from "react";
+import type {Screen} from './types'
+
 
 import App from "./App"
 
 interface StartProps {
-  onStart: () => void;
+  onNavigate: (screen: Screen) => void;
 }
 
-function Start({onStart}: StartProps) {
-  console.log(onStart)
+function Start({onNavigate}: StartProps) {
+
 
   const handleStart = () =>{
     console.log("io")
-    onStart();
+    onNavigate("menu");
+
   }
 
   const handleModal = () =>{
     const modal = document.getElementById("modal");
     console.log(modal, modal?.style.visibility  );
-    if(modal.style.visibility === "hidden"){
+    if(modal?.style.visibility === "hidden"){
         console.log("is hidden")
         modal.style.visibility = "visible";
     }
@@ -27,7 +30,7 @@ function Start({onStart}: StartProps) {
   }
   const handleCloseModal = () =>{
     const modal = document.getElementById("modal");
-    if(modal.style.visibility === "visible"){
+    if(modal?.style.visibility === "visible"){
         modal.style.visibility = "hidden";
     }
   }

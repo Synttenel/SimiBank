@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type {Screen} from './types'
 
 import './App.css'
 
@@ -11,13 +12,12 @@ import NavBar from './NavBar'
 import UserCustom from './UserCustom'
 import Shop from './Shop'
 
-type Screen = "menu" | "shop" | "start" | "profile" | "card" | "currency";
+
 
 
 function App() {
 
-  const [started, setStarted] = useState(false);
-  const [screen, setScreen] = useState<Screen>("menu");
+  const [screen, setScreen] = useState<Screen>("start");
   const [name, setName] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
   const [income, setIncome] = useState(2);
@@ -38,20 +38,16 @@ function App() {
 
   switch(screen){
     case "menu":
-      return <MainMenu  handleFun={() => handleDay()} day={day} money={money} card={card} />;
+      return <MainMenu onNavigate={setScreen} handleFun={() => handleDay()} day={day} money={money} card={card} />;
     case "shop":
-      return <Shop  />;
+      return <Shop onNavigate={setScreen} />;
+    case "configuration":
     case "start":
-      return <Start  onStart={()=>setStarted(true)}/>;
+      return <Start  onNavigate={setScreen}/>;
     case "profile":
-      return <UserCustom  />;
-    case "card":
+      return <UserCustom  onNavigate={setScreen}/>;
     case "currency":
-  }
-
-  
-  if(!started){
-    return (<><Start onStart={() => setStarted(true)} /></>)
+    case "card":
   }
 
   return (

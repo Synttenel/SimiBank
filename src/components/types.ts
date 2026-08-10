@@ -1,0 +1,1 @@
+export type Screen = "menu" | "shop" | "configuration" | "start" | "profile" | "card" | "currency";
