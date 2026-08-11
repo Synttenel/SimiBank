@@ -8,14 +8,26 @@ import NameChange from "./NameChange";
 
 interface Props{
   onNavigate: (screen: Screen) => void;
+  name: string;
+  setName: () => void;
+  profilePicture: string;
+  setProfilePicture: () => void;
 }
 
-function UserCustom({onNavigate}: Props){
+function UserCustom({onNavigate, name, setName, profilePicture, setProfilePicture}: Props){
+
+  const [isPictureVisible, setIsPictureVisible] = useState(false);
+  const [isNameVisible, setIsNameVisible] = useState(false);
 
   return(
     <>
       
+      <PictureChange setHidden={() => setIsPictureVisible(false)} 
+      isVisible={isPictureVisible} />
 
+      <NameChange setHidden={() => setIsNameVisible(false)}
+      isVisible={isNameVisible} 
+      setName={setName}/>
       
       <div className="flex flex-col relative justify-between items-start bg-card-light p-5 w-screen h-42 rounded-b-2xl min-sm: shadow-2xs"></div>
       <div className="absolute flex flex-col gap-10 justify-end items-end backdrop-blur-2xl z-50 left-1/2 bottom-0 -translate-x-1/2 h-screen w-screen">
@@ -29,13 +41,17 @@ function UserCustom({onNavigate}: Props){
           </button>
           <h1 className="absolute left-5 top-5 text-black font-bold text-2xl underline">Customizar perfil</h1>
           <div className="flex flex-col justify-evenly items-center pt-10 h-full w-full">
-            <button className="relative">
-              <img className="rounded-full bg-gray-300 p-1 w-50 h-50" src="https://img.icons8.com/?size=100&id=kDoeg22e5jUY&format=png&color=000000"/>
-              <img className="absolute right-5 bottom-5 w-12 h-12 bg-background/70 backdrop-blur-sm rounded-full p-1" src="https://img.icons8.com/?size=100&id=15042&format=png&color=000000"/>
+            <button className="relative gap-2 border-blue-800"
+            onClick={() => setIsPictureVisible(true)}>
+              <img className="rounded-full bg-gray-300 p-1 w-45 h-45" src={profilePicture}/>
+              <p className="text-blue-500 text-2xl underline">Editar Avatar</p>
+          
             </button>
-            <button className="relative flex justify-between items-center">
-              <h1 className="text-black font-bold text-3xl">NOME DO USUÁRIO</h1>
-              <img className="w-12 h-12 bg-background/70 backdrop-blur-sm rounded-full p-1" src="https://img.icons8.com/?size=100&id=15042&format=png&color=000000"/>
+            <button className="relative flex flex-col justify-between gap-2 items-center"
+            onClick={() => setIsNameVisible(true)}>
+              <p className="text-black font-bold text-3xl">{name}</p>
+              <p className="text-blue-500 text-2xl underline">Editar Nome</p>
+              
             </button>
           </div>
             <button className="absolute bottom-5 bg-card-light rounded-2xl w-5/6 p-3 shadow-2xs hover:bg-card-light/60 cursor-pointer transition-colors duration-200 ease-in hover:shadow-current"

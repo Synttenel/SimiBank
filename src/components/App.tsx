@@ -22,8 +22,13 @@ import Shop from './Shop'
 function App() {
 
   const [screen, setScreen] = useState<Screen>("start");
-  const [name, setName] = useState("");
-  const [profilePicture, setProfilePicture] = useState("");
+  const [name, setName] = useState("Guilherme");
+  const [profilePicture, setProfilePicture] = useState("https://img.icons8.com/?size=100&id=LypZSIS7xVVW&format=png&color=000000");
+  const [items, setItems] = useState([
+    {
+
+    }
+  ])
   const [income, setIncome] = useState(2);
   const [expense, setExpense] = useState(1);
   const [money, setMoney] = useState(0);
@@ -42,7 +47,11 @@ function App() {
 
   switch(screen){
     case "menu":
-      return <MainMenu onNavigate={setScreen} handleFun={() => handleDay()} day={day} money={money} card={card} />;
+      return <MainMenu onNavigate={setScreen} 
+      handleFun={() => handleDay()} 
+      day={day} 
+      money={money} 
+      card={card} />;
     case "shop":
       return <Shop onNavigate={setScreen} />;
     case "configuration":
@@ -52,7 +61,11 @@ function App() {
     case "start":
       return <Start onNavigate={setScreen} />;
     case "profile":
-      return <UserCustom onNavigate={setScreen} />;
+      return <UserCustom onNavigate={setScreen} 
+      name={name} 
+      setName={()=>setName}
+      profilePicture={profilePicture}
+      setProfilePicture={() => setProfilePicture} />;
     case "currency":
       return <CurrencyHistory onNavigate={setScreen} />;
     case "card":

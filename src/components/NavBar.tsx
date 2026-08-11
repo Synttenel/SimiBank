@@ -23,10 +23,10 @@ function NavBar({onClickShop, onClickItems, nextDay}: Props){
             <img className="W-15 h-15  bg-card-dark rounded-full p-1" src="https://img.icons8.com/?size=100&id=H0JqzxqGxPQm&format=png&color=FFFFFF"/>
             <p className="font-bold">Avançar Tempo</p>
           </button>
-          <button className="flex flex-col justify-around items-center">
+          <button className="flex flex-col justify-around items-center"
+          onClick={() => onClickShop()}>
             <img className="w-10 h-10" src="https://img.icons8.com/?size=100&id=77030&format=png&color=FFFFFF"/>
-            <p className="font-bold"
-            onClick={() => onClickShop()}>Loja</p>
+            <p className="font-bold">Loja</p>
           </button>
         </div>
     </>
