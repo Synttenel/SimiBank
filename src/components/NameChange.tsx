@@ -1,10 +1,13 @@
 import { useState } from "react";
 
+import type { Dispatch } from "react";
+import type { SetStateAction } from "react";
+
 
 interface Props{
   setHidden: () => void;
   isVisible: boolean;
-  setName: () => void;
+  setName: Dispatch<SetStateAction<string>>;
 }
 
 function NameChange({setHidden, isVisible, setName}: Props){
@@ -14,9 +17,11 @@ function NameChange({setHidden, isVisible, setName}: Props){
   const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
     const element = e.target.value;
     console.log(element)
-    setCurrentName(prev => prev + element);
+    setCurrentName(element);
+    console.log(currentName)
   }
   const handleUpdateName = () =>{
+    setName(currentName);
     setHidden();
   }
 

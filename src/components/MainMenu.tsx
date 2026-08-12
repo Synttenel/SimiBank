@@ -14,18 +14,20 @@ import Shop from './Shop'
 interface Props{
     onNavigate: (screen: Screen) => void;
     handleFun: ()=> void;
+    name: string;
+    profilePicture: string;
     day: number;
     money: number;
     card: number;
 }
 
-function MainMenu({onNavigate, handleFun, day, money, card}: Props) {
+function MainMenu({onNavigate, handleFun, name, profilePicture, day, money, card}: Props) {
 
   return (
     <>
       
       <div className="flex flex-col gap-10 justify-top items-center h-screen w-screen bg-background">
-        <ProfileBar onClickProfile={()=> onNavigate("profile")} onClickConfiguration={() => onNavigate("configuration")} day={day} />
+        <ProfileBar onClickProfile={()=> onNavigate("profile")} onClickConfiguration={() => onNavigate("configuration")} name={name} profilePicture={profilePicture} day={day} />
 
         <CurrencyBar onClickCurrency={() => onNavigate("currency")} money={money} />
 

@@ -21,6 +21,8 @@ function Configuration({onNavigate}: Props){
                 </svg>
           </button>
           <h1 className="absolute left-5 top-5 text-black font-bold text-2xl underline">Configurações</h1>
+          <button className="absolute bottom-5 bg-red-500 rounded-2xl w-5/6 p-3 shadow-2xs hover:bg-red-500/60 cursor-pointer transition-colors duration-200 ease-in hover:shadow-current"
+          onClick={() => onNavigate("start")}>Sair</button>
         </div>
       </div>
     </>

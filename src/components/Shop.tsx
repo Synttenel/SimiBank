@@ -36,12 +36,14 @@ function Shop({onNavigate}: Props){
       <div className="absolute flex flex-col gap-10 justify-end items-end backdrop-blur-2xl z-60 left-1/2 bottom-0 -translate-x-1/2 h-screen w-screen">
         <div className="relative flex flex-wrap gap-5 overflow-auto justify-center items-center z-50 left-1/2 bottom-0 -translate-x-1/2 p-10 rounded-t-3xl h-[95%] w-screen bg-background shadow-2xs">
           {/*<!-- License: CC Attribution. Made by tetrisly: https://tetrisly.gumroad.com/l/freeicons -->*/}
+          
           <button className="absolute right-5 top-5 bg-white rounded-2xl hover:bg-gray-300/80 cursor-pointer transition-colors duration-200 ease-in"
           onClick={() => onNavigate("menu")}>
             <svg fill="#0000000" width="35px" height="35px" viewBox="0 0 1.05 1.05" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="m0.587 0.525 0.232 -0.232a0.044 0.044 0 1 0 -0.062 -0.062L0.525 0.463 0.293 0.232a0.044 0.044 0 1 0 -0.062 0.062L0.463 0.525l-0.232 0.232a0.044 0.044 0 1 0 0.062 0.062L0.525 0.587l0.232 0.232a0.044 0.044 0 0 0 0.062 0 0.044 0.044 0 0 0 0 -0.062z"/>
             </svg>
           </button>
+          
           <h1 className="absolute left-5 top-5 text-black font-bold text-2xl underline">Loja</h1>
           
             {shopItems.map((shopItem, _) => (
@@ -54,7 +56,7 @@ function Shop({onNavigate}: Props){
               </div>
             ))}
             
-          <div className="sticky flex justify-between items-center bottom-0 w-11/12 mt-10">
+          <div className="sticky flex justify-between items-center bottom-0 p-2 ">
             <h1 className="font-bold bg-card-light rounded-l-2xl w-5/6 h-[3lh] p-3 shadow-2xs text-center">Items no carrinho:</h1>
             <button className="bg-card-light border-l-2 rounded-r-2xl w-5/6 h-[3lh] p-3 shadow-2xs hover:bg-card-light/60 cursor-pointer transition-colors duration-200 ease-in hover:shadow-current"
               >Ir para Checkout</button>

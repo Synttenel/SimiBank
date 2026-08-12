@@ -48,7 +48,9 @@ function App() {
   switch(screen){
     case "menu":
       return <MainMenu onNavigate={setScreen} 
-      handleFun={() => handleDay()} 
+      handleFun={() => handleDay()}
+      name={name} 
+      profilePicture={profilePicture}
       day={day} 
       money={money} 
       card={card} />;
@@ -63,9 +65,9 @@ function App() {
     case "profile":
       return <UserCustom onNavigate={setScreen} 
       name={name} 
-      setName={()=>setName}
+      setName={setName}
       profilePicture={profilePicture}
-      setProfilePicture={() => setProfilePicture} />;
+      setProfilePicture={setProfilePicture} />;
     case "currency":
       return <CurrencyHistory onNavigate={setScreen} />;
     case "card":

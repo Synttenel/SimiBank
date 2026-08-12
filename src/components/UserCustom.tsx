@@ -1,5 +1,7 @@
 import { useState } from "react";
 import type {Screen} from './types'
+import type { Dispatch } from "react";
+import type { SetStateAction } from "react";
 
 
 import "./App.css";
@@ -9,9 +11,9 @@ import NameChange from "./NameChange";
 interface Props{
   onNavigate: (screen: Screen) => void;
   name: string;
-  setName: () => void;
+  setName: Dispatch<SetStateAction<string>>;
   profilePicture: string;
-  setProfilePicture: () => void;
+  setProfilePicture: Dispatch<SetStateAction<string>>;
 }
 
 function UserCustom({onNavigate, name, setName, profilePicture, setProfilePicture}: Props){
@@ -23,7 +25,8 @@ function UserCustom({onNavigate, name, setName, profilePicture, setProfilePictur
     <>
       
       <PictureChange setHidden={() => setIsPictureVisible(false)} 
-      isVisible={isPictureVisible} />
+      isVisible={isPictureVisible} 
+      setProfilePicture={setProfilePicture}/>
 
       <NameChange setHidden={() => setIsNameVisible(false)}
       isVisible={isNameVisible} 
@@ -54,8 +57,6 @@ function UserCustom({onNavigate, name, setName, profilePicture, setProfilePictur
               
             </button>
           </div>
-            <button className="absolute bottom-5 bg-card-light rounded-2xl w-5/6 p-3 shadow-2xs hover:bg-card-light/60 cursor-pointer transition-colors duration-200 ease-in hover:shadow-current"
-            >Salvar</button>
         </div>
       </div>
     </>
