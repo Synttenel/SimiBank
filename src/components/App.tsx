@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type {Screen} from './types'
+import type { ShopItem } from './shopitems'
 
 import './App.css'
 
@@ -16,20 +17,41 @@ import UserCustom from './UserCustom'
 import Items from './Items'
 import Shop from './Shop'
 
-
-
-
 function App() {
 
   const [screen, setScreen] = useState<Screen>("start");
   const [name, setName] = useState("Guilherme");
   const [profilePicture, setProfilePicture] = useState("https://img.icons8.com/?size=100&id=LypZSIS7xVVW&format=png&color=000000");
-  const [items, setItems] = useState([
+  const [shopItems, setShopItems] = useState<ShopItem[]>([
+    
     {
-
+      name: "Caixa de Som",
+      image: "https://img.icons8.com/?size=100&id=40886&format=png&color=000000",
+      price: 150,
+      ammount: 1,
+      description: "Diminui a chance de receber efeitos negativos",
+      bought: false
+    },
+    {
+      name: "Não Caixa de som",
+      image: "https://img.icons8.com/?size=100&id=40886&format=png&color=000000",
+      price: 150,
+      ammount: 1,
+      description: "Diminui a chance de receber efeitos negativos",
+      bought: false
+    }
+  ]);
+  const [items, setItems] = useState<ShopItem[]>([
+    {
+      name: "Não Caixa de som",
+      image: "https://img.icons8.com/?size=100&id=40886&format=png&color=000000",
+      price: 150,
+      ammount: 1,
+      description: "Diminui a chance de receber efeitos negativos",
+      bought: false
     }
   ])
-  const [income, setIncome] = useState(2);
+  const [income, setIncome] = useState(100);
   const [expense, setExpense] = useState(1);
   const [money, setMoney] = useState(0);
   const [card, setCard] = useState(0);
@@ -55,11 +77,17 @@ function App() {
       money={money} 
       card={card} />;
     case "shop":
-      return <Shop onNavigate={setScreen} />;
+      return <Shop onNavigate={setScreen}
+      money={money}
+      setMoney={setMoney}
+      setItems={setItems}
+      shopItems={shopItems}
+      setShopItems={setShopItems} />;
     case "configuration":
       return <Configuration onNavigate={setScreen} />
     case "items":
-      return <Items onNavigate={setScreen} />;
+      return <Items onNavigate={setScreen} 
+      items={items}/>;
     case "start":
       return <Start onNavigate={setScreen} />;
     case "profile":

@@ -1,34 +1,51 @@
 import { useState } from "react";
 import type {Screen} from './types'
+import type { ShopItem } from "./shopitems";
 
+import type { Dispatch } from "react";
+import type { SetStateAction } from "react";
 
 interface Props{
   onNavigate: (screen: Screen) => void;
+  money: number,
+  setMoney: Dispatch<SetStateAction<number>>
+  setItems: Dispatch<SetStateAction<ShopItem>>
+  shopItems: ShopItem[];
+  setShopItems: Dispatch<SetStateAction<ShopItem[]>>
+
+
 }
 
 
-function Shop({onNavigate}: Props){
+function Shop({onNavigate, money, setMoney, setItems, shopItems, setShopItems}: Props){
 
-  const [shopItems, setShopItems] = useState([
-    {
-      name: "Caixa de Som",
-      image: "https://img.icons8.com/?size=100&id=40886&format=png&color=000000",
-      preco: 150,
-      efeito: "Diminui a chance de receber efeitos negativos"
-    },
-    {
-      name: "Celular",
-      image: "https://img.icons8.com/?size=100&id=40886&format=png&color=000000",
-      preco: 200,
-      efeito: "Diminui o custo de vida, porém aumenta a chance de receber efeitos negativos"
-    },
-    {
-      name: "Video Game",
-      image: "https://img.icons8.com/?size=100&id=40886&format=png&color=000000",
-      preco: 300,
-      efeito: ""
+  const handleBuyItem = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const element = e.target.id;
+    let itemPrice = 0;
+    let itemIndex = "";
+    Object.entries(shopItems).forEach((value) => {
+      console.log(value[1].name);
+      if(value[1].name === element){
+        itemPrice = value[1].price;
+        itemIndex = value[0];
+      }
+    })
+    console.log(itemPrice, itemIndex, shopItems[parseInt(itemIndex)]);
+
+    if(money < itemPrice){
+      alert(`Não há dinheiro suficiente para concluir a transação, ainda faltam R$${itemPrice - money}.`);
+      return;
     }
-  ])
+    else if(money >= itemPrice){
+      setMoney(money - itemPrice);
+      setItems(shopItems[parseInt(itemIndex)]);
+      alert("Item Comprado com sucesso");
+      
+    }
+    
+    console.log(element);
+  }
+
 
   return(
     <>
@@ -50,9 +67,11 @@ function Shop({onNavigate}: Props){
               <div className="flex flex-col justify-center items-center gap-5 mt-20 bg-card-light p-5  rounded-2xl min-sm: shadow-2xs" key={_}>
                 <img src={shopItem.image}/>
                 <h1>{shopItem.name}</h1>
-                <h1>{shopItem.preco}</h1>
+                <h1>{shopItem.price}</h1>
+                <h1>{shopItem.ammount}</h1>
                 <button className="bottom-5 bg-card-dark rounded-2xl w-50 p-3 shadow-2xs hover:bg-card-medium/60 cursor-pointer transition-colors duration-200 ease-in hover:shadow-current"
-                >Adicionar ao carrinho</button>
+                id={shopItem.name}
+                onClick={(e) => handleBuyItem(e)}>Comprar</button>
               </div>
             ))}
             

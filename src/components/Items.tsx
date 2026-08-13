@@ -1,12 +1,16 @@
 import { useState } from "react";
 
 import type {Screen} from './types'
+import type { ShopItem } from "./shopitems";
 
 interface Props{
     onNavigate: (screen: Screen) => void;
+    items: ShopItem[]
 }
 
-function Items({onNavigate}: Props){
+function Items({onNavigate, items}: Props){
+
+  console.log(items);
 
   return (
     <>
@@ -21,6 +25,17 @@ function Items({onNavigate}: Props){
                 </svg>
           </button>
           <h1 className="absolute left-5 top-5 text-black font-bold text-2xl underline">Itens</h1>
+
+          {items.map((item, _) => (
+              <div className="flex flex-col justify-center items-center gap-5 mt-20 bg-card-light p-5  rounded-2xl min-sm: shadow-2xs" key={_}>
+                <img src={item.image}/>
+                <h1>{item.name}</h1>
+                <h1>{item.price}</h1>
+                <h1>{item.ammount}</h1>
+                <h1>{item.description}</h1>
+              </div>
+          ))}
+
         </div>
       </div>
     </>
