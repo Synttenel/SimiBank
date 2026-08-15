@@ -5,12 +5,20 @@ import type { ShopItem } from "./shopitems";
 
 interface Props{
     onNavigate: (screen: Screen) => void;
-    items: ShopItem[]
+    items: ShopItem[];
 }
 
 function Items({onNavigate, items}: Props){
 
-  console.log(items);
+  console.log(items, "iniciando teste");
+  const meusItens = items.map((item, _) => {
+    console.log(item.name);
+    console.log(item.price);
+    console.log(item.ammount);
+    console.log(item.description);
+    console.log(item.bought);
+  })
+  meusItens;
 
   return (
     <>
@@ -25,8 +33,8 @@ function Items({onNavigate, items}: Props){
                 </svg>
           </button>
           <h1 className="absolute left-5 top-5 text-black font-bold text-2xl underline">Itens</h1>
-
-          {items.map((item, _) => (
+            
+            {items.map((item, _) => (
               <div className="flex flex-col justify-center items-center gap-5 mt-20 bg-card-light p-5  rounded-2xl min-sm: shadow-2xs" key={_}>
                 <img src={item.image}/>
                 <h1>{item.name}</h1>

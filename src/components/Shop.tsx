@@ -9,7 +9,7 @@ interface Props{
   onNavigate: (screen: Screen) => void;
   money: number,
   setMoney: Dispatch<SetStateAction<number>>
-  setItems: Dispatch<SetStateAction<ShopItem>>
+  setItems: Dispatch<SetStateAction<ShopItem[]>>
   shopItems: ShopItem[];
   setShopItems: Dispatch<SetStateAction<ShopItem[]>>
 
@@ -38,7 +38,7 @@ function Shop({onNavigate, money, setMoney, setItems, shopItems, setShopItems}: 
     }
     else if(money >= itemPrice){
       setMoney(money - itemPrice);
-      setItems(shopItems[parseInt(itemIndex)]);
+      setItems(prev => [...prev, shopItems[parseInt(itemIndex)]]);
       alert("Item Comprado com sucesso");
       
     }
