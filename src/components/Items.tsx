@@ -35,12 +35,11 @@ function Items({onNavigate, items}: Props){
           <h1 className="absolute left-5 top-5 text-black font-bold text-2xl underline">Itens</h1>
             
             {items.map((item, _) => (
-              <div className="flex flex-col justify-center items-center gap-5 mt-20 bg-card-light p-5  rounded-2xl min-sm: shadow-2xs" key={_}>
+              <div className="relative flex flex-col justify-center items-center gap-5 mt-20 bg-card-light p-5  rounded-2xl min-sm: shadow-2xs" key={_}>
                 <img src={item.image}/>
-                <h1>{item.name}</h1>
-                <h1>{item.price}</h1>
-                <h1>{item.ammount}</h1>
-                <h1>{item.description}</h1>
+                <h1 className="text-2xl font-bold">{item.name}</h1>
+                <h2 className="absolute top-5 right-5 text-2xl font-bold ">{item.ammount}x</h2>
+                <h2 className="text-1xl text-center font-bold">{item.description}</h2>
               </div>
           ))}
 

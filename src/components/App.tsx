@@ -26,15 +26,15 @@ function App() {
     
     {
       name: "Caixa de Som",
-      image: "https://img.icons8.com/?size=100&id=40886&format=png&color=000000",
+      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
       price: 150,
       ammount: 1,
       description: "Diminui a chance de receber efeitos negativos",
       bought: false
     },
     {
-      name: "Não Caixa de som",
-      image: "https://img.icons8.com/?size=100&id=40886&format=png&color=000000",
+      name: "Ventilador",
+      image: "https://img.icons8.com/?size=100&id=41286&format=png&color=000000",
       price: 150,
       ammount: 1,
       description: "Diminui a chance de receber efeitos negativos",
@@ -42,14 +42,7 @@ function App() {
     }
   ]);
   const [items, setItems] = useState<ShopItem[]>([
-    {
-      name: "Não Caixa de som",
-      image: "https://img.icons8.com/?size=100&id=40886&format=png&color=000000",
-      price: 150,
-      ammount: 1,
-      description: "Diminui a chance de receber efeitos negativos",
-      bought: false
-    }
+    
   ])
   const [income, setIncome] = useState(100);
   const [expense, setExpense] = useState(1);
@@ -80,6 +73,7 @@ function App() {
       return <Shop onNavigate={setScreen}
       money={money}
       setMoney={setMoney}
+      items={items}
       setItems={setItems}
       shopItems={shopItems}
       setShopItems={setShopItems} />;

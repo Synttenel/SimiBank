@@ -9,6 +9,7 @@ interface Props{
   onNavigate: (screen: Screen) => void;
   money: number,
   setMoney: Dispatch<SetStateAction<number>>
+  items: ShopItem[];
   setItems: Dispatch<SetStateAction<ShopItem[]>>
   shopItems: ShopItem[];
   setShopItems: Dispatch<SetStateAction<ShopItem[]>>
@@ -17,7 +18,10 @@ interface Props{
 }
 
 
-function Shop({onNavigate, money, setMoney, setItems, shopItems, setShopItems}: Props){
+function Shop({onNavigate, money, setMoney, items, setItems, shopItems, setShopItems}: Props){
+
+  console.log(items);
+  console.log(shopItems);
 
   const handleBuyItem = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const element = e.target.id;
@@ -37,9 +41,27 @@ function Shop({onNavigate, money, setMoney, setItems, shopItems, setShopItems}: 
       return;
     }
     else if(money >= itemPrice){
+      const saveItem = shopItems[parseInt(itemIndex)];
       setMoney(money - itemPrice);
-      setItems(prev => [...prev, shopItems[parseInt(itemIndex)]]);
+
+      for(let i = 0; i < items.length; i++){
+        if(items[i].name === element){
+          items[i].ammount++;
+          return;
+        }
+      }
+      
+      
+      setItems(prev => [...prev,{
+        ...saveItem,
+        bought: true
+
+      }]);
+      saveItem.ammount--;
       alert("Item Comprado com sucesso");
+      
+       
+
       
     }
     
@@ -66,9 +88,9 @@ function Shop({onNavigate, money, setMoney, setItems, shopItems, setShopItems}: 
             {shopItems.map((shopItem, _) => (
               <div className="flex flex-col justify-center items-center gap-5 mt-20 bg-card-light p-5  rounded-2xl min-sm: shadow-2xs" key={_}>
                 <img src={shopItem.image}/>
-                <h1>{shopItem.name}</h1>
-                <h1>{shopItem.price}</h1>
-                <h1>{shopItem.ammount}</h1>
+                <h1 className="text-2xl font-bold">{shopItem.name}</h1>
+                <h2 className="text-1xl">Disponível: {shopItem.ammount}</h2>
+                <h2 className="text-1xl">R${shopItem.price}</h2>
                 <button className="bottom-5 bg-card-dark rounded-2xl w-50 p-3 shadow-2xs hover:bg-card-medium/60 cursor-pointer transition-colors duration-200 ease-in hover:shadow-current"
                 id={shopItem.name}
                 onClick={(e) => handleBuyItem(e)}>Comprar</button>
