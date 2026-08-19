@@ -26,27 +26,35 @@ function Shop({onNavigate, money, setMoney, items, setItems, shopItems, setShopI
   const handleBuyItem = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const element = e.target.id;
     let itemPrice = 0;
+    let itemAmmount = 0;
     let itemIndex = "";
     Object.entries(shopItems).forEach((value) => {
       console.log(value[1].name);
       if(value[1].name === element){
         itemPrice = value[1].price;
+        itemAmmount = value[1].ammount;
         itemIndex = value[0];
       }
     })
     console.log(itemPrice, itemIndex, shopItems[parseInt(itemIndex)]);
-
+    if(itemAmmount <= 0){
+      alert("O item está fora de estoque");
+      return;
+    }
     if(money < itemPrice){
       alert(`Não há dinheiro suficiente para concluir a transação, ainda faltam R$${itemPrice - money}.`);
       return;
     }
     else if(money >= itemPrice){
       const saveItem = shopItems[parseInt(itemIndex)];
+
       setMoney(money - itemPrice);
 
       for(let i = 0; i < items.length; i++){
         if(items[i].name === element){
           items[i].ammount++;
+          saveItem.ammount--;
+          alert("Item Comprado com sucesso");
           return;
         }
       }
@@ -54,7 +62,7 @@ function Shop({onNavigate, money, setMoney, items, setItems, shopItems, setShopI
       
       setItems(prev => [...prev,{
         ...saveItem,
-        bought: true
+        ammount: 1
 
       }]);
       saveItem.ammount--;

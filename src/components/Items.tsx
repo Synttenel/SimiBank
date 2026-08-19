@@ -16,7 +16,6 @@ function Items({onNavigate, items}: Props){
     console.log(item.price);
     console.log(item.ammount);
     console.log(item.description);
-    console.log(item.bought);
   })
   meusItens;
 

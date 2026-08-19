@@ -3,6 +3,5 @@ export type ShopItem = {
   image: string,
   price: number,
   ammount: number,
-  description: string,
-  bought: boolean
+  description: string
 }

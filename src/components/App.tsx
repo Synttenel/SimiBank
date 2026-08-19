@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type {Screen} from './types'
 import type { ShopItem } from './shopitems'
+import type { Event } from './Event'
 
 import './App.css'
 
@@ -22,6 +23,20 @@ function App() {
   const [screen, setScreen] = useState<Screen>("start");
   const [name, setName] = useState("Guilherme");
   const [profilePicture, setProfilePicture] = useState("https://img.icons8.com/?size=100&id=LypZSIS7xVVW&format=png&color=000000");
+  const itemEffect = [
+    () => {
+      console.log("que dia normal!");
+    },
+    () => {
+      console.log("que dia ruim!");
+      setMoney(prev => prev - 100);
+      setExpense(prev => prev * 1.1);
+    },
+    () => {
+      console.log("que dia bom!");
+      setMoney(prev => prev + 100);
+    }
+  ]
   const [shopItems, setShopItems] = useState<ShopItem[]>([
     
     {
@@ -30,7 +45,6 @@ function App() {
       price: 150,
       ammount: 1,
       description: "Diminui a chance de receber efeitos negativos",
-      bought: false
     },
     {
       name: "Ventilador",
@@ -38,24 +52,73 @@ function App() {
       price: 150,
       ammount: 1,
       description: "Diminui a chance de receber efeitos negativos",
-      bought: false
     }
   ]);
-  const [items, setItems] = useState<ShopItem[]>([
-    
-  ])
+  const [items, setItems] = useState<ShopItem[]>([])
+  const eventEffect = [
+    () => {
+      console.log("que dia normal!");
+    },
+    () => {
+      console.log("que dia ruim!");
+      setMoney(prev => prev - 100);
+      setExpense(prev => prev * 1.1);
+    },
+    () => {
+      console.log("que dia bom!");
+      setMoney(prev => prev + 100);
+    }
+  ]
+  const [eventsList, setEventsList] = useState<Event[]>([
+    {
+      name: "Dia normal",
+      context: "Um dia mundano e tranquilo, não aconteceu nada de ruim e nada de bom",
+      effect: eventEffect[0]
+    },
+    {
+      name: "Dia ruim",
+      context: "Um dia sofrido e injusto, perca R$100 reais e aumente seus custos em 10%",
+      effect: eventEffect[1]
+    },
+    {
+      name: "Dia bom",
+      context: "Um dia bom e aconchegante, ganhe R$100 reais",
+      effect: eventEffect[2]
+    }
+  ]);
   const [income, setIncome] = useState(100);
-  const [expense, setExpense] = useState(1);
+  const [expense, setExpense] = useState(20);
   const [money, setMoney] = useState(0);
   const [card, setCard] = useState(0);
   const [day, setDay] = useState(0);
 
+
+  const handleEvent = () =>{
+    let lottery = Math.floor(Math.random() * 10);
+    let roll = 0;
+
+    for(let i = lottery; i > 0; i--){
+      if(roll <= eventsList.length - 1){
+        roll++;
+      }
+      if(roll > eventsList.length - 1){
+        roll = 0;
+      }
+    }
+
+    console.log(lottery, roll, eventsList[roll]);
+    eventsList[roll].effect();
+    console.log(money);
+  }
+
   const handleIncome = () =>{
-    setMoney(money + (income - expense));
+    setMoney(prev => Math.floor(prev + (income - expense)));
+    console.log(money, income, expense)
   }
 
   const handleDay = () =>{
     setDay(day + 1);
+    handleEvent();
     handleIncome();
 
   }
