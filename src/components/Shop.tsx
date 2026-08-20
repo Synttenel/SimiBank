@@ -13,12 +13,12 @@ interface Props{
   setItems: Dispatch<SetStateAction<ShopItem[]>>
   shopItems: ShopItem[];
   setShopItems: Dispatch<SetStateAction<ShopItem[]>>
-
+  itemEffect: (() => void)[];
 
 }
 
 
-function Shop({onNavigate, money, setMoney, items, setItems, shopItems, setShopItems}: Props){
+function Shop({onNavigate, money, setMoney, items, setItems, shopItems, setShopItems, itemEffect}: Props){
 
   console.log(items);
   console.log(shopItems);
@@ -62,7 +62,8 @@ function Shop({onNavigate, money, setMoney, items, setItems, shopItems, setShopI
       
       setItems(prev => [...prev,{
         ...saveItem,
-        ammount: 1
+        ammount: 1,
+        effect: itemEffect[saveItem.id]
 
       }]);
       saveItem.ammount--;

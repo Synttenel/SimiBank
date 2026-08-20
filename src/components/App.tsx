@@ -19,16 +19,33 @@ import Items from './Items'
 import Shop from './Shop'
 
 function App() {
-
+  
   const [screen, setScreen] = useState<Screen>("start");
   const [name, setName] = useState("Guilherme");
   const [profilePicture, setProfilePicture] = useState("https://img.icons8.com/?size=100&id=LypZSIS7xVVW&format=png&color=000000");
+  const [items, setItems] = useState<ShopItem[]>([])
+  const handleItemName = (itemName: string) => {
+    for(let i = 0; i < items.length; i++){
+      if(items[i].name === itemName){
+        console.log("testando a função", items[i].ammount, items[i])
+        let returnValue = items[i].ammount
+        return returnValue===undefined?0: returnValue;
+      }
+    }
+  }
   const itemEffect = [
     () => {
-      console.log("que dia normal!");
+      let itemName = "Caixa de Som";
+      console.log("Caixa de Som","array de efeitos itens");
+      console.log(income);
+      let times = handleItemName(itemName)
+
+      setIncome(prev => prev * (1 + (0.10 * times)));
+      console.log(income);
     },
     () => {
-      console.log("que dia ruim!");
+      let itemName = "Caixa de Som";
+      console.log("Ventilador");
       setMoney(prev => prev - 100);
       setExpense(prev => prev * 1.1);
     },
@@ -40,21 +57,24 @@ function App() {
   const [shopItems, setShopItems] = useState<ShopItem[]>([
     
     {
+      id: 0,
       name: "Caixa de Som",
       image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
       price: 150,
-      ammount: 1,
-      description: "Diminui a chance de receber efeitos negativos",
+      ammount: 3,
+      description: "Você se torna mais feliz, aumente seu salário em 10%",
+      effect: itemEffect[0],
     },
     {
+      id: 1,
       name: "Ventilador",
       image: "https://img.icons8.com/?size=100&id=41286&format=png&color=000000",
       price: 150,
       ammount: 1,
       description: "Diminui a chance de receber efeitos negativos",
+      effect: itemEffect[1],
     }
   ]);
-  const [items, setItems] = useState<ShopItem[]>([])
   const eventEffect = [
     () => {
       console.log("que dia normal!");
@@ -110,6 +130,12 @@ function App() {
     eventsList[roll].effect();
     console.log(money);
   }
+  const handleItems = () => {
+    for(let i = 0; i < items.length; i++){
+      console.log("Testando handleItemss", items[i].effect, items[i].ammount, i, items)
+      items[i].effect();
+    }
+  }
 
   const handleIncome = () =>{
     setMoney(prev => Math.floor(prev + (income - expense)));
@@ -119,6 +145,7 @@ function App() {
   const handleDay = () =>{
     setDay(day + 1);
     handleEvent();
+    handleItems();
     handleIncome();
 
   }
@@ -139,7 +166,8 @@ function App() {
       items={items}
       setItems={setItems}
       shopItems={shopItems}
-      setShopItems={setShopItems} />;
+      setShopItems={setShopItems}
+      itemEffect={itemEffect} />;
     case "configuration":
       return <Configuration onNavigate={setScreen} />
     case "items":
