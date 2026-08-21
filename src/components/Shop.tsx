@@ -50,15 +50,18 @@ function Shop({onNavigate, money, setMoney, items, setItems, shopItems, setShopI
 
       setMoney(money - itemPrice);
 
+      
+
       for(let i = 0; i < items.length; i++){
         if(items[i].name === element){
           items[i].ammount++;
           saveItem.ammount--;
+          itemEffect[saveItem.id](items[i].ammount);
           alert("Item Comprado com sucesso");
           return;
         }
       }
-      
+      itemEffect[saveItem.id](1);
       
       setItems(prev => [...prev,{
         ...saveItem,

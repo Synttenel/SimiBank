@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type {Screen} from './types'
 import type { ShopItem } from './shopitems'
 import type { Event } from './Event'
@@ -17,6 +17,7 @@ import NavBar from './NavBar'
 import UserCustom from './UserCustom'
 import Items from './Items'
 import Shop from './Shop'
+import GameOver from './GameOver'
 
 function App() {
   
@@ -24,35 +25,18 @@ function App() {
   const [name, setName] = useState("Guilherme");
   const [profilePicture, setProfilePicture] = useState("https://img.icons8.com/?size=100&id=LypZSIS7xVVW&format=png&color=000000");
   const [items, setItems] = useState<ShopItem[]>([])
-  const handleItemName = (itemName: string) => {
-    for(let i = 0; i < items.length; i++){
-      if(items[i].name === itemName){
-        console.log("testando a função", items[i].ammount, items[i])
-        let returnValue = items[i].ammount
-        return returnValue===undefined?0: returnValue;
-      }
-    }
-  }
   const itemEffect = [
-    () => {
+    (ammount: number) => {
       let itemName = "Caixa de Som";
-      console.log("Caixa de Som","array de efeitos itens");
-      console.log(income);
-      let times = handleItemName(itemName)
-
-      setIncome(prev => prev * (1 + (0.10 * times)));
-      console.log(income);
+      setIncome(prev => prev * (1 + (0.10 * ammount)));
     },
-    () => {
-      let itemName = "Caixa de Som";
-      console.log("Ventilador");
-      setMoney(prev => prev - 100);
-      setExpense(prev => prev * 1.1);
+    (ammount: number) => {
+      let itemName = "Ventilador";
+      console.log(money);
+      setMoney(prev => prev + 50);
+      setExpense(prev => prev * (1 + (0.01 * ammount)));
+      console.log(money)
     },
-    () => {
-      console.log("que dia bom!");
-      setMoney(prev => prev + 100);
-    }
   ]
   const [shopItems, setShopItems] = useState<ShopItem[]>([
     
@@ -62,7 +46,7 @@ function App() {
       image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
       price: 150,
       ammount: 3,
-      description: "Você se torna mais feliz, aumente seu salário em 10%",
+      description: "Você se torna mais feliz, aumente seu salário atual em 10%",
       effect: itemEffect[0],
     },
     {
@@ -71,7 +55,7 @@ function App() {
       image: "https://img.icons8.com/?size=100&id=41286&format=png&color=000000",
       price: 150,
       ammount: 1,
-      description: "Diminui a chance de receber efeitos negativos",
+      description: "Você gosta de um ventilador pouco eficiente, aumente em 5% o seu gasto atual mas ganhe R$300 reais",
       effect: itemEffect[1],
     }
   ]);
@@ -130,13 +114,6 @@ function App() {
     eventsList[roll].effect();
     console.log(money);
   }
-  const handleItems = () => {
-    for(let i = 0; i < items.length; i++){
-      console.log("Testando handleItemss", items[i].effect, items[i].ammount, i, items)
-      items[i].effect();
-    }
-  }
-
   const handleIncome = () =>{
     setMoney(prev => Math.floor(prev + (income - expense)));
     console.log(money, income, expense)
@@ -145,10 +122,16 @@ function App() {
   const handleDay = () =>{
     setDay(day + 1);
     handleEvent();
-    handleItems();
     handleIncome();
 
   }
+
+  useEffect(() =>{
+    if(money < -500){
+      setScreen("gameover");
+    }
+  },[money])
+
 
   switch(screen){
     case "menu":
@@ -185,6 +168,8 @@ function App() {
       return <CurrencyHistory onNavigate={setScreen} />;
     case "card":
       return <CardHistory onNavigate={setScreen} />;
+    case "gameover":
+      return <GameOver onNavigate={setScreen}></GameOver>;
   }
 
   return (
