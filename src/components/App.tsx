@@ -76,29 +76,45 @@ function App() {
   const [eventsList, setEventsList] = useState<Event[]>([
     {
       name: "Dia normal",
+      image: "https://img.icons8.com/?size=100&id=9JCaiJSEnP5k&format=png&color=000000",
       context: "Um dia mundano e tranquilo, não aconteceu nada de ruim e nada de bom",
       effect: eventEffect[0]
     },
     {
       name: "Dia ruim",
+      image: "https://img.icons8.com/?size=100&id=CTNJTslTK4xy&format=png&color=000000",
       context: "Um dia sofrido e injusto, perca R$100 reais e aumente seus custos em 10%",
       effect: eventEffect[1]
     },
     {
       name: "Dia bom",
+      image: "https://img.icons8.com/?size=100&id=aWBc8fucFZnx&format=png&color=000000",
       context: "Um dia bom e aconchegante, ganhe R$100 reais",
       effect: eventEffect[2]
     }
   ]);
+  const [currentEvent, setCurrentEvent] = useState<Event>(eventsList[0]);
   const [income, setIncome] = useState(100);
   const [expense, setExpense] = useState(20);
   const [money, setMoney] = useState(0);
   const [card, setCard] = useState(0);
   const [day, setDay] = useState(0);
+  const [showAlert, setShowAlert] = useState(false);
 
 
   const handleEvent = () =>{
+    setShowAlert(false);
+
+    let eventTriggerRoll = Math.floor(Math.random() * 100);
+    console.log("Roll de triggar um evento: ", eventTriggerRoll)
+
+    if(eventTriggerRoll > 20){
+      return;
+    }
+
     let lottery = Math.floor(Math.random() * 10);
+    
+
     let roll = 0;
 
     for(let i = lottery; i > 0; i--){
@@ -113,6 +129,8 @@ function App() {
     console.log(lottery, roll, eventsList[roll]);
     eventsList[roll].effect();
     console.log(money);
+    setCurrentEvent(eventsList[roll]);
+    setShowAlert(true);
   }
   const handleIncome = () =>{
     setMoney(prev => Math.floor(prev + (income - expense)));
@@ -141,7 +159,9 @@ function App() {
       profilePicture={profilePicture}
       day={day} 
       money={money} 
-      card={card} />;
+      card={card}
+      showAlert={showAlert}
+      event={currentEvent} />;
     case "shop":
       return <Shop onNavigate={setScreen}
       money={money}
@@ -165,7 +185,10 @@ function App() {
       profilePicture={profilePicture}
       setProfilePicture={setProfilePicture} />;
     case "currency":
-      return <CurrencyHistory onNavigate={setScreen} />;
+      return <CurrencyHistory onNavigate={setScreen} 
+      money={money}
+      income={income}
+      expense={expense} />;
     case "card":
       return <CardHistory onNavigate={setScreen} />;
     case "gameover":

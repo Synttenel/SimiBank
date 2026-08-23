@@ -4,15 +4,18 @@ import type {Screen} from './types'
 
 interface Props{
     onNavigate: (screen: Screen) => void;
+    money: number,
+    income: number,
+    expense: number,
 }
 
-function CurrencyHistory({onNavigate}: Props){
+function CurrencyHistory({onNavigate, money, income, expense}: Props){
 
   return (
     <>
       <div className="flex flex-col relative justify-between items-start bg-card-light p-5 w-screen h-42 rounded-b-2xl min-sm: shadow-2xs"></div>
       <div className="absolute flex flex-col gap-10 justify-end items-end backdrop-blur-2xl z-60 left-1/2 bottom-0 -translate-x-1/2 h-screen w-screen">
-        <div className="relative flex flex-wrap gap-5 overflow-auto justify-center items-center z-50 left-1/2 bottom-0 -translate-x-1/2 p-10 rounded-t-3xl h-[95%] w-screen bg-background shadow-2xs">
+        <div className="relative flex flex-wrap gap-5 overflow-auto justify-center z-50 left-1/2 bottom-0 -translate-x-1/2 p-10 rounded-t-3xl h-[95%] w-screen bg-background shadow-2xs">
             {/*<!-- License: CC Attribution. Made by tetrisly: https://tetrisly.gumroad.com/l/freeicons -->*/}
             <button className="absolute right-5 top-5 bg-white rounded-2xl hover:bg-gray-300/80 cursor-pointer transition-colors duration-200 ease-in"
              onClick={() => onNavigate("menu")}>
@@ -21,6 +24,24 @@ function CurrencyHistory({onNavigate}: Props){
                 </svg>
           </button>
           <h1 className="absolute left-5 top-5 text-black font-bold text-2xl underline">Extrato</h1>
+          <div className="flex items-start flex-col flex-wrap mt-20 w-full gap-5">
+            <div className="relative justify-between bg-card-medium rounded-2xl p-5 h-auto w-full gap-5">
+              <h2 className="font-bold text-md">Conta Corrente:</h2>
+              <h1 className="text-2xl font-bold ">R${Math.floor(money)}</h1>
+            </div>
+            <div className="relative justify-between bg-card-medium rounded-2xl p-5 h-auto w-full gap-5">
+              <h2 className="font-bold text-md">Salário:</h2>
+              <h1 className="text-2xl font-bold ">R${Math.floor(income)}</h1>
+            </div>
+            <div className="relative justify-between bg-card-medium rounded-2xl p-5 h-auto w-full gap-5">
+              <h2 className="font-bold text-md">Despesa:</h2>
+              <h1 className="text-2xl font-bold ">R${Math.floor(expense)}</h1>
+            </div>
+            <div className="relative justify-between bg-card-light rounded-2xl p-5 h-auto w-full gap-5">
+              <h2 className="font-bold text-md">Lucro:</h2>
+              <h1 className="text-2xl font-bold ">R${Math.floor(income) - Math.floor(expense)}</h1>
+            </div>
+          </div>
         </div>
       </div>
     </>
