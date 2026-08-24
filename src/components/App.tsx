@@ -100,6 +100,7 @@ function App() {
   const [card, setCard] = useState(0);
   const [day, setDay] = useState(0);
   const [showAlert, setShowAlert] = useState(false);
+  const [disableAlert, setDisableAlert] = useState(false);
 
 
   const handleEvent = () =>{
@@ -141,7 +142,7 @@ function App() {
     setDay(day + 1);
     handleEvent();
     handleIncome();
-
+    console.log("disable alert", disableAlert)
   }
 
   useEffect(() =>{
@@ -161,6 +162,9 @@ function App() {
       money={money} 
       card={card}
       showAlert={showAlert}
+      setShowAlert={setShowAlert}
+      disableAlert={disableAlert}
+      setDisableAlert={setDisableAlert}
       event={currentEvent} />;
     case "shop":
       return <Shop onNavigate={setScreen}
@@ -172,7 +176,8 @@ function App() {
       setShopItems={setShopItems}
       itemEffect={itemEffect} />;
     case "configuration":
-      return <Configuration onNavigate={setScreen} />
+      return <Configuration onNavigate={setScreen}
+      disableAlert={disableAlert} />
     case "items":
       return <Items onNavigate={setScreen} 
       items={items}/>;

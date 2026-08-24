@@ -3,10 +3,22 @@ import { useState } from "react";
 import type {Screen} from './types'
 
 interface Props{
-    onNavigate: (screen: Screen) => void;
+    onNavigate: (screen: Screen) => void,
+    disableAlert: boolean,
 }
 
-function Configuration({onNavigate}: Props){
+function Configuration({onNavigate, disableAlert}: Props){
+
+  const [alertButtonIO, setAlertButtonIO] = useState(true)
+
+  const handleToogleButtonAlert = () => {
+    if(disableAlert){
+      setAlertButtonIO(false);
+    }
+    else{
+      setAlertButtonIO(true);
+    }
+  }
 
   return (
     <>
@@ -21,6 +33,13 @@ function Configuration({onNavigate}: Props){
                 </svg>
           </button>
           <h1 className="absolute left-5 top-5 text-black font-bold text-2xl underline">Configurações</h1>
+          <div className="flex justify-start items-start  flex-wrap mt-10 w-full gap-5">
+            <h1 className="text-2xl font-bold text-black underline">Desativar alertas</h1>
+            <button className="bg-card-light h-10 w-20 p-1 rounded-full relative"
+            onClick={console.log("o8i")}>
+              <div className="bg-background size-8 rounded-full absolute top-1/2 -translate-y-1/2"></div>
+            </button>
+          </div>
           <button className="absolute bottom-5 bg-red-500 rounded-2xl w-5/6 p-3 shadow-2xs hover:bg-red-500/60 cursor-pointer transition-colors duration-200 ease-in hover:shadow-current"
           onClick={() => onNavigate("start")}>Sair</button>
         </div>
