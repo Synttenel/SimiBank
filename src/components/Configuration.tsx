@@ -1,24 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import type {Screen} from './types'
+
+import type { Dispatch } from "react";
+import type { SetStateAction } from "react";
+
 
 interface Props{
     onNavigate: (screen: Screen) => void,
     disableAlert: boolean,
+    setDisableAlert: Dispatch<SetStateAction<boolean>>,
 }
 
-function Configuration({onNavigate, disableAlert}: Props){
+function Configuration({onNavigate, disableAlert, setDisableAlert}: Props){
 
-  const [alertButtonIO, setAlertButtonIO] = useState(true)
+  const [alertButtonIO, setAlertButtonIO] = useState(disableAlert);
 
-  const handleToogleButtonAlert = () => {
+  const handleAlertToggle = () => {
     if(disableAlert){
-      setAlertButtonIO(false);
+      setDisableAlert(false);
     }
     else{
-      setAlertButtonIO(true);
+      setDisableAlert(true);
     }
+
+    console.log("botão clickado");
   }
+
+  useEffect(() => {
+    console.log("disableAlert boolean", disableAlert);
+    setAlertButtonIO(disableAlert);
+    console.log(alertButtonIO)
+  },[disableAlert])
+
 
   return (
     <>
@@ -35,9 +49,11 @@ function Configuration({onNavigate, disableAlert}: Props){
           <h1 className="absolute left-5 top-5 text-black font-bold text-2xl underline">Configurações</h1>
           <div className="flex justify-start items-start  flex-wrap mt-10 w-full gap-5">
             <h1 className="text-2xl font-bold text-black underline">Desativar alertas</h1>
-            <button className="bg-card-light h-10 w-20 p-1 rounded-full relative"
-            onClick={console.log("o8i")}>
-              <div className="bg-background size-8 rounded-full absolute top-1/2 -translate-y-1/2"></div>
+            <button className="bg-card-light h-10 w-20 p-1 rounded-full relative transition-all duration-200 ease-in "
+            onClick={() => handleAlertToggle()}
+            style={{background: (alertButtonIO?"#528585":"#fb2c36")}}>
+              <div className="bg-background size-8 rounded-full absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 transition-transform duration-200 ease-in"
+              style={{transition: "transform 200ms ease-in",transform: `translateX(${(alertButtonIO?(-50):(50))}%)`}}></div>
             </button>
           </div>
           <button className="absolute bottom-5 bg-red-500 rounded-2xl w-5/6 p-3 shadow-2xs hover:bg-red-500/60 cursor-pointer transition-colors duration-200 ease-in hover:shadow-current"

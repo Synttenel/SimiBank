@@ -41,7 +41,7 @@ function EventAlert({closeModal, isVisible, event, disableAlert, setDisableAlert
           </div>
             <button className="bg-red-500 rounded-2xl w-5/6 p-3 shadow-2xs hover:bg-red-500/60 cursor-pointer transition-colors duration-200 ease-in hover:shadow-current"
             onClick={() => handleDisableAlert()}>Desativar alerta</button>
-            <button className="bg-card-light rounded-2xl w-5/6 p-3 shadow-2xs hover:bg-card-light/60 cursor-pointer transition-colors duration-200 ease-in hover:shadow-current"
+            <button className="bg-card-light rounded-2xl w-5/6 p-3 shadow-2xs hover:bg-card-light/60 cursor-pointer transition-colors duration-200 ease-in hover:shadow-current "
             onClick={() => closeModal()}>Ok</button>
         </div>
       </div>

@@ -9,8 +9,8 @@ import './App.css'
 
 import Start from "./Start"
 import ProfileBar from "./ProfileBar"
+import Canvas from './Canvas';
 import CurrencyBar from './CurrencyBar'
-import CardBar from './CardBar'
 import NavBar from './NavBar'
 import UserCustom from './UserCustom'
 import Shop from './Shop'
@@ -50,9 +50,9 @@ function MainMenu({onNavigate, handleFun, name, profilePicture, day, money, card
       <div className="flex flex-col gap-10 justify-top items-center h-screen w-screen bg-background">
         <ProfileBar onClickProfile={()=> onNavigate("profile")} onClickConfiguration={() => onNavigate("configuration")} name={name} profilePicture={profilePicture} day={day} />
 
-        <CurrencyBar onClickCurrency={() => onNavigate("currency")} money={money} />
+        <Canvas />
 
-        <CardBar onClickCard={() => onNavigate("card")} card={card} />
+        <CurrencyBar onClickCurrency={() => onNavigate("currency")} money={money} />
 
       </div>
 

@@ -9,10 +9,9 @@ import Start from "./Start"
 import MainMenu from "./MainMenu"
 import Configuration from './Configuration'
 import ProfileBar from "./ProfileBar"
+import Canvas from "./Canvas"
 import CurrencyBar from './CurrencyBar'
 import CurrencyHistory from './CurrencyHistory'
-import CardBar from './CardBar'
-import CardHistory from './CardHistory'
 import NavBar from './NavBar'
 import UserCustom from './UserCustom'
 import Items from './Items'
@@ -177,7 +176,8 @@ function App() {
       itemEffect={itemEffect} />;
     case "configuration":
       return <Configuration onNavigate={setScreen}
-      disableAlert={disableAlert} />
+      disableAlert={disableAlert}
+      setDisableAlert={setDisableAlert} />
     case "items":
       return <Items onNavigate={setScreen} 
       items={items}/>;
@@ -189,13 +189,15 @@ function App() {
       setName={setName}
       profilePicture={profilePicture}
       setProfilePicture={setProfilePicture} />;
+    case "canvas":
+      return <Canvas 
+      //onNavigate={setScreen}
+       />
     case "currency":
       return <CurrencyHistory onNavigate={setScreen} 
       money={money}
       income={income}
       expense={expense} />;
-    case "card":
-      return <CardHistory onNavigate={setScreen} />;
     case "gameover":
       return <GameOver onNavigate={setScreen}></GameOver>;
   }
