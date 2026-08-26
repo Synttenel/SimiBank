@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import type {Screen} from './types'
 import type { ShopItem } from './shopitems'
 import type { Event } from './Event'
+import type { GameState } from './gamestate'
 
 import './App.css'
 
@@ -98,6 +99,11 @@ function App() {
   const [money, setMoney] = useState(0);
   const [card, setCard] = useState(0);
   const [day, setDay] = useState(0);
+  const [gameState, setGameState] = useState<GameState>({
+    normal: false,
+    rainy: false,
+    sunny: false
+  })
   const [showAlert, setShowAlert] = useState(false);
   const [disableAlert, setDisableAlert] = useState(false);
 
@@ -128,6 +134,23 @@ function App() {
 
     console.log(lottery, roll, eventsList[roll]);
     eventsList[roll].effect();
+    switch(eventsList[roll].name){
+      case "Dia normal":
+        gameState.normal = true;
+        gameState.rainy = false;
+        gameState.sunny = false;
+        break;
+      case "Dia ruim":
+        gameState.normal = false;
+        gameState.rainy = true;
+        gameState.sunny = false;
+        break;
+      case "Dia bom":
+        gameState.normal = false;
+        gameState.rainy = false;
+        gameState.sunny = true;
+        break;
+    }
     console.log(money);
     setCurrentEvent(eventsList[roll]);
     setShowAlert(true);
@@ -164,6 +187,7 @@ function App() {
       setShowAlert={setShowAlert}
       disableAlert={disableAlert}
       setDisableAlert={setDisableAlert}
+      gameState={gameState}
       event={currentEvent} />;
     case "shop":
       return <Shop onNavigate={setScreen}
