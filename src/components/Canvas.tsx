@@ -2,6 +2,8 @@ import { useState, useEffect} from "react";
 
 import type { GameState } from "./gamestate";
 
+import "./images/svgviewer-output.svg"
+
 interface Props {
   gameState: GameState,
   day: number,
@@ -28,21 +30,29 @@ function Canvas({gameState, day}: Props){
     }
 
     if(canvas){
-      let c = canvas.getContext("2d");
-      const draw = () =>{
-  
-        c.imageSmoothingEnabled = false;
-        
-      
+    let c = canvas.getContext("2d");
+    
 
-        c.fillStyle = background;
+      c.imageSmoothingEnabled = false;
       
-        c.fillRect(0,0,canvas.width, canvas.height);
-  
-       
+    
 
+      c.fillStyle = "black";
+    
+      c.fillRect(0,0,canvas.width, canvas.height);
+
+
+      c.fillStyle = "white";
+
+      let windowProp = {
+        "width": canvas.width/1.25,
+        "height": canvas.height/1.5
       }
-      requestAnimationFrame(draw);
+
+      c.fillRect(canvas.width/2 - windowProp.width/2, canvas.height/2 - windowProp.height/2, windowProp.width, windowProp.height);
+      
+      
+      
     }
 
     console.log("canvas")
@@ -54,7 +64,7 @@ function Canvas({gameState, day}: Props){
 
   return(
     <>
-      <canvas className="max-w[1000px] min-w[800px] h-42 border-2 rounded-2xl"
+      <canvas className="max-w[100%] min-w[800px] h-42 border-2 rounded-2xl"
        id="canvas"
        style={{imageRendering: "pixelated"}}
       onClick={()=> setCount(prev => prev + 1)}></canvas>
