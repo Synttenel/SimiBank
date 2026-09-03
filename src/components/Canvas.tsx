@@ -2,7 +2,7 @@ import { useState, useEffect} from "react";
 
 import type { GameState } from "./gamestate";
 
-import "./images/svgviewer-output.svg"
+import canvasBg from "./images/canvasBg.jpg"
 
 interface Props {
   gameState: GameState,
@@ -31,6 +31,10 @@ function Canvas({gameState, day}: Props){
       canvas.style.background = "lightblue";
     }
 
+    for(let i = 0; i < 1000; i++){
+      clearInterval(i);
+    }
+
     if(canvas){
     let c = canvas.getContext("2d");
     c.lineCap = 'round';
@@ -38,11 +42,21 @@ function Canvas({gameState, day}: Props){
     
       let w = canvas.width;
       let h = canvas.height;
-    
-      
-      var init = [];
-    var maxParts = 1000;
-    c.strokeStyle= "white";
+
+    let img = new Image()
+
+    img.src = canvasBg;
+
+      img.onload = function() {
+        
+        c.drawImage(img, w/2 - img.width/2,h/2 - img.height/2);
+      };
+
+    // Rain canvas script from https://codepen.io/ruigewaard/pen/Podmea
+    // Credit to ruigewaard
+    var init = [];
+    var maxParts = 500;
+    c.strokeStyle= "rgba(174,194,224,0.5)";
     for(var a = 0; a < maxParts; a++) {
       init.push({
         x: Math.random() * w,
@@ -59,7 +73,9 @@ function Canvas({gameState, day}: Props){
     }
     
     function draw() {
-      c.clearRect(0, 0, w, h);
+
+      c.drawImage(img, w/2 - img.width/2,h/2 - img.height/2);
+      
       for(var cr = 0; cr < particles.length; cr++) {
         var p = particles[cr];
         c.beginPath();
@@ -82,8 +98,7 @@ function Canvas({gameState, day}: Props){
       }
     }
     
-    setInterval(draw, 45);
-
+    setInterval(draw, 30);
 
       
       
@@ -109,6 +124,7 @@ function Canvas({gameState, day}: Props){
           gameState.rainy?"https://img.icons8.com/?size=100&id=15360&format=png&color=000000":
           gameState.sunny?"https://img.icons8.com/?size=100&id=8LM7-CYX4BPD&format=png&color=000000":"https://img.icons8.com/?size=100&id=UyNm3S4bECd7&format=png&color=000000"}  id="eventLogo"/>
       </div>
+      
     </>
   )
 }
