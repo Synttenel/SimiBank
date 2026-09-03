@@ -2,7 +2,9 @@ import { useState, useEffect} from "react";
 
 import type { GameState } from "./gamestate";
 
-import canvasBg from "./images/canvasBg.jpg"
+import canvasBgRainy from "./images/canvasBgRainy.png"
+import canvasBgNormal from "./images/canvasBgNormal.jpg"
+import canvasBgSunny from "./images/canvasBgSunny.png"
 
 interface Props {
   gameState: GameState,
@@ -18,19 +20,6 @@ function Canvas({gameState, day}: Props){
     let canvas = document.querySelector("canvas");
     const eventLogo = document.getElementById("eventLogo");
 
-    let background = "red";
-
-    if(gameState.normal){
-      canvas.style.background = "white";
-      
-    }
-    if(gameState.rainy){
-      canvas.style.background = "gray";
-    }
-    if(gameState.sunny){
-      canvas.style.background = "lightblue";
-    }
-
     for(let i = 0; i < 1000; i++){
       clearInterval(i);
     }
@@ -45,17 +34,33 @@ function Canvas({gameState, day}: Props){
 
     let img = new Image()
 
-    img.src = canvasBg;
+    if(gameState.normal){
+      img.src = canvasBgNormal;
+      var maxParts = 10;
+      
+    }
+    if(gameState.rainy){
+      img.src = canvasBgRainy;
+      var maxParts = 500;
+    }
+    if(gameState.sunny){
+      img.src = canvasBgSunny;
+    }
+    else{
+      img.src = canvasBgNormal;
+      console.log("falseo", gameState)
+    }
 
-      img.onload = function() {
-        
-        c.drawImage(img, w/2 - img.width/2,h/2 - img.height/2);
-      };
+    img.onload = function() {
+      
+      c.drawImage(img, w/2 - img.width/2,h/2 - img.height/2);
+    };
+
 
     // Rain canvas script from https://codepen.io/ruigewaard/pen/Podmea
     // Credit to ruigewaard
     var init = [];
-    var maxParts = 500;
+    
     c.strokeStyle= "rgba(174,194,224,0.5)";
     for(var a = 0; a < maxParts; a++) {
       init.push({
@@ -75,6 +80,7 @@ function Canvas({gameState, day}: Props){
     function draw() {
 
       c.drawImage(img, w/2 - img.width/2,h/2 - img.height/2);
+ 
       
       for(var cr = 0; cr < particles.length; cr++) {
         var p = particles[cr];
