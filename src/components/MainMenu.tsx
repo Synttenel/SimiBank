@@ -11,6 +11,7 @@ import './App.css'
 import Start from "./Start"
 import ProfileBar from "./ProfileBar"
 import Canvas from './Canvas';
+import Slider from './Slider';
 import CurrencyBar from './CurrencyBar'
 import NavBar from './NavBar'
 import UserCustom from './UserCustom'
@@ -52,7 +53,8 @@ function MainMenu({onNavigate, handleFun, name, profilePicture, day, money, card
       <div className="flex flex-col gap-10 justify-top items-center h-screen w-screen bg-background">
         <ProfileBar onClickProfile={()=> onNavigate("profile")} onClickConfiguration={() => onNavigate("configuration")} name={name} profilePicture={profilePicture} day={day} />
 
-        <Canvas gameState={gameState} day={day}/>
+        
+        <Slider gameState={gameState} day={day} />
 
         <CurrencyBar onClickCurrency={() => onNavigate("currency")} money={money} />
 

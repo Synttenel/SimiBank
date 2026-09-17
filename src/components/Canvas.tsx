@@ -121,8 +121,8 @@ function Canvas({gameState, day}: Props){
   return(
     <>
 
-      <div className="  rounded-2xl relative w-[90%]  md:w-[90%] md:h-84 grid  grid-flow-col overflow-x-auto snap-x snap-mandatory gap-10 auto-cols-[100%]">
-        <canvas className="max-w[100%] min-w[800px] md:w-[100%] md:h-84  h-42 border-2 rounded-2xl snap-center"
+      
+        <canvas className="w-full min-w[800px] md:w-[100%] md:h-84  h-42 rounded-2xl snap-center"
           id="canvas"
           style={{imageRendering: "pixelated"}}
         onClick={()=> setCount(prev => prev + 1)}></canvas>
@@ -130,22 +130,6 @@ function Canvas({gameState, day}: Props){
           gameState.rainy?"https://img.icons8.com/?size=100&id=15360&format=png&color=000000":
           gameState.sunny?"https://img.icons8.com/?size=100&id=8LM7-CYX4BPD&format=png&color=000000":"https://img.icons8.com/?size=100&id=UyNm3S4bECd7&format=png&color=000000"}  id="eventLogo"/>
 
-        <div className="flex flex-col gap-10 justify-top items-start bg-card-medium p-5   rounded-2xl min-sm: shadow-2xs snap-center shrink-0">
-            <h1 className="font-bold text-2xl">Dentro da casa</h1>
-            <h1 className="font-bold text-2xl">R$88</h1>
-            
-        </div>
-        <div className="flex flex-col gap-10 justify-top items-start bg-card-medium p-5 w-full h-full rounded-2xl min-sm: shadow-2xs snap-center shrink-0">
-            <h1 className="font-bold text-2xl">Você</h1>
-            <h1 className="font-bold text-2xl">R$88</h1>
-            
-        </div>
-        <div className="flex flex-col gap-10 justify-top items-start bg-card-medium p-5 w-full h-full rounded-2xl min-sm: shadow-2xs snap-center shrink-0">
-            <h1 className="font-bold text-2xl">Conta</h1>
-            <h1 className="font-bold text-2xl">R$88</h1>
-            
-        </div>
-      </div>
       
     </>
   )
