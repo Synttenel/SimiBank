@@ -37,6 +37,13 @@ function App() {
       setExpense(prev => prev * (1 + (0.01 * ammount)));
       console.log(money)
     },
+    (ammount: number) => {
+      let itemName = "Cama";
+      console.log(money);
+      setMoney(prev => prev + 50);
+      setExpense(prev => prev * (1 + (0.01 * ammount)));
+      console.log(money)
+    },
   ]
   const [shopItems, setShopItems] = useState<ShopItem[]>([
     
@@ -45,19 +52,100 @@ function App() {
       name: "Caixa de Som",
       image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
       price: 150,
-      ammount: 3,
+      ammount: 1,
       description: "Você se torna mais feliz, aumente seu salário atual em 10%",
       effect: itemEffect[0],
     },
     {
       id: 1,
-      name: "Ventilador",
-      image: "https://img.icons8.com/?size=100&id=41286&format=png&color=000000",
+      name: "Ar-condicionado",
+      image: "https://img.icons8.com/?size=100&id=8086&format=png&color=000000",
       price: 150,
       ammount: 1,
-      description: "Você gosta de um ventilador pouco eficiente, aumente em 5% o seu gasto atual mas ganhe R$300 reais",
+      description: "Você gosta de um friozinho, aumente em 5% o seu gasto atual mas ganhe R$300 reais pela sua felicidade",
       effect: itemEffect[1],
-    }
+    },
+    {
+      id: 2,
+      name: "Cama",
+      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
+      price: 150,
+      ammount: 1,
+      description: "Você não tinha aonde dormir... Agora tem!",
+      effect: itemEffect[0],
+    },
+    {
+      id: 3,
+      name: "Filtro",
+      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
+      price: 150,
+      ammount: 1,
+      description: "Como você bebia a água pela a torneira?",
+      effect: itemEffect[0],
+    },
+    {
+      id: 4,
+      name: "Televisão",
+      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
+      price: 150,
+      ammount: 1,
+      description: "Entretenimento!",
+      effect: itemEffect[0],
+    },
+    {
+      id: 5,
+      name: "Rádio",
+      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
+      price: 150,
+      ammount: 1,
+      description: "Não são somente notícias...",
+      effect: itemEffect[0],
+    },
+    {
+      id: 6,
+      name: "Gato",
+      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
+      price: 0,
+      ammount: 1,
+      description: "Tinha um gato na sua porta... Não mais.",
+      effect: itemEffect[0],
+    },
+    {
+      id: 7,
+      name: "Câmera",
+      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
+      price: 0,
+      ammount: 1,
+      description: "Algo está lá fora e precisa ser vigiado.",
+      effect: itemEffect[0],
+    },
+    {
+      id: 8,
+      name: "Deixar a porta aberta?",
+      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
+      price: 0,
+      ammount: 1,
+      description: "Você não se sente seguro.",
+      effect: itemEffect[0],
+    },
+    {
+      id: 9,
+      name: "Ir lá fora...",
+      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
+      price: 0,
+      ammount: 1,
+      description: "Você saiu da casa.",
+      effect: itemEffect[0],
+    },
+    {
+      id: 10,
+      name: "Escopeta",
+      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
+      price: 0,
+      ammount: 1,
+      description: "Você se sente mais seguro.",
+      effect: itemEffect[0],
+    },
   ]);
   const eventEffect = [
     () => {

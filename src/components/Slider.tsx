@@ -34,17 +34,8 @@ function Slider({ gameState, day }: Props){
         
         let numberOfImages = sliderProgress.children.length;
 
-        
-        
-           
-        
-          
-          
       }
 
-  
-
-    
   },[test])
 
   return(
