@@ -16,6 +16,36 @@ function Slider({ gameState, day }: Props){
   let sliderComponent = document.getElementById("sliderComponent");
   let sliderProgress = document.getElementById("sliderProgress");
 
+  
+  useEffect(() => {
+    sliderComponent = document.getElementById("sliderComponent");
+    sliderProgress = document.getElementById("sliderProgress");
+    
+      if(sliderComponent && sliderProgress){
+          
+  
+          console.log(sliderComponent.scrollLeft);
+          //console.log(sliderComponent.scrollWidth);
+         // console.log(sliderComponent.children)
+  
+         // console.log(sliderProgress?.children)
+        let difference = sliderProgress.attributes;
+        console.log("diferença", difference)
+        
+        let numberOfImages = sliderProgress.children.length;
+
+        
+        
+           
+        
+          
+          
+      }
+
+  
+
+    
+  },[test])
 
   return(
     <>
