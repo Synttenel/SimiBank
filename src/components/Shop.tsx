@@ -109,10 +109,8 @@ function Shop({onNavigate, money, setMoney, items, setItems, shopItems, setShopI
               </div>
             ))}
             
-          <div className="sticky flex justify-between items-center bottom-0 p-2 ">
-            <h1 className="font-bold bg-card-light rounded-l-2xl w-5/6 h-[3lh] p-3 shadow-2xs text-center">Items no carrinho:</h1>
-            <button className="bg-card-light border-l-2 rounded-r-2xl w-5/6 h-[3lh] p-3 shadow-2xs hover:bg-card-light/60 cursor-pointer transition-colors duration-200 ease-in hover:shadow-current"
-              >Ir para Checkout</button>
+          <div className="sticky flex justify-between items-center w-full bottom-0 p-2 ">
+            <h1 className="font-bold bg-card-light/70 backdrop-blur-xl rounded-2xl  p-3 shadow-2xs text-center w-full">R$ {money}</h1>
           </div>  
         </div>
       </div>

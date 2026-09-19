@@ -11,6 +11,7 @@ interface Props{
 function Slider({ gameState, day }: Props){
 
   const [test,setTest] = useState(0);
+  const [slider, setSlider] = useState(0);
 
   
   let sliderComponent = document.getElementById("sliderComponent");
@@ -18,21 +19,13 @@ function Slider({ gameState, day }: Props){
 
   
   useEffect(() => {
+
     sliderComponent = document.getElementById("sliderComponent");
     sliderProgress = document.getElementById("sliderProgress");
     
       if(sliderComponent && sliderProgress){
           
-  
-          console.log(sliderComponent.scrollLeft);
-          //console.log(sliderComponent.scrollWidth);
-         // console.log(sliderComponent.children)
-  
-         // console.log(sliderProgress?.children)
-        let difference = sliderProgress.attributes;
-        console.log("diferença", difference)
-        
-        let numberOfImages = sliderProgress.children.length;
+        setSlider(sliderComponent.scrollLeft);
 
       }
 
@@ -61,11 +54,11 @@ function Slider({ gameState, day }: Props){
       <div className="absolute bg-black/70 backdrop:blur-2xl w-20 h-5 left-1/2 bottom-0 -translate-x-1/2 rounded-4xl flex justify-center items-center p-2 gap-3"
       id="sliderProgress">
         <div className="rounded-full bg-white opacity-100 h-2 w-2"
-        style={{opacity: 340*0<=sliderComponent?.scrollLeft&&sliderComponent?.scrollLeft<340*1?"100%":"30%"}}></div>
+        style={{opacity: 340*0<=slider&&slider<340*1?"100%":"30%"}}></div>
         <div className="rounded-full bg-white h-2 w-2"
-        style={{opacity: 340*1<=sliderComponent?.scrollLeft&&sliderComponent?.scrollLeft<340*2?"100%":"30%"}}></div>
+        style={{opacity: 340*1<=slider&&slider<340*2?"100%":"30%"}}></div>
         <div className="rounded-full bg-white h-2 w-2"
-        style={{opacity: 340*2<=sliderComponent?.scrollLeft&&sliderComponent?.scrollLeft<340*3?"100%":"30%"}}></div>
+        style={{opacity: 340*2<=slider&&slider<340*3?"100%":"30%"}}></div>
       </div>
       </div>
     </>

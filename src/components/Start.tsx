@@ -12,7 +12,7 @@ function Start({onNavigate}: StartProps) {
 
 
   const handleStart = () =>{
-    console.log("io")
+    console.log("io");
     onNavigate("menu");
 
   }

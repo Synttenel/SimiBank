@@ -25,13 +25,14 @@ function App() {
   const [name, setName] = useState("Guilherme");
   const [profilePicture, setProfilePicture] = useState("https://img.icons8.com/?size=100&id=LypZSIS7xVVW&format=png&color=000000");
   const [items, setItems] = useState<ShopItem[]>([])
+  const [currentGameOver, setCurrentGameOver] = useState(0);
   const itemEffect = [
     (ammount: number) => {
       let itemName = "Caixa de Som";
       setIncome(prev => prev * (1 + (0.10 * ammount)));
     },
     (ammount: number) => {
-      let itemName = "Ventilador";
+      let itemName = "Ar Condicionado";
       console.log(money);
       setMoney(prev => prev + 50);
       setExpense(prev => prev * (1 + (0.01 * ammount)));
@@ -40,8 +41,47 @@ function App() {
     (ammount: number) => {
       let itemName = "Cama";
       console.log(money);
-      setMoney(prev => prev + 50);
-      setExpense(prev => prev * (1 + (0.01 * ammount)));
+      console.log(money)
+    },
+    (ammount: number) => {
+      let itemName = "Computador";
+      console.log(money);
+      console.log(money)
+    },
+    (ammount: number) => {
+      let itemName = "Televisão";
+      console.log(money);
+      console.log(money)
+    },
+    (ammount: number) => {
+      let itemName = "Rádio";
+      console.log(money);
+      console.log(money)
+    },
+    (ammount: number) => {
+      let itemName = "Gato";
+      console.log(money);
+      setIncome(prev => prev + 1);
+      console.log(money)
+    },
+    (ammount: number) => {
+      let itemName = "Cassino";
+      console.log(money);
+      let roll = Math.random() * 100;
+
+      if(roll > 15){
+        setExpense(prev => prev + (prev * 0.5));
+      }
+      else if(roll <= 15){
+        setMoney(prev => prev + 1500)
+      }
+      console.log(money)
+    },
+    (ammount: number) => {
+      let itemName = "Terminar o jogo";
+      console.log(money);
+      setCurrentGameOver(1);
+      setScreen("gameover");
       console.log(money)
     },
   ]
@@ -60,7 +100,7 @@ function App() {
       id: 1,
       name: "Ar-condicionado",
       image: "https://img.icons8.com/?size=100&id=8086&format=png&color=000000",
-      price: 150,
+      price: 1000,
       ammount: 1,
       description: "Você gosta de um friozinho, aumente em 5% o seu gasto atual mas ganhe R$300 reais pela sua felicidade",
       effect: itemEffect[1],
@@ -68,83 +108,65 @@ function App() {
     {
       id: 2,
       name: "Cama",
-      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
-      price: 150,
+      image: "https://img.icons8.com/?size=100&id=8021&format=png&color=000000",
+      price: 500,
       ammount: 1,
       description: "Você não tinha aonde dormir... Agora tem!",
-      effect: itemEffect[0],
+      effect: itemEffect[2],
     },
     {
       id: 3,
-      name: "Filtro",
-      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
-      price: 150,
+      name: "Computador",
+      image: "https://img.icons8.com/?size=100&id=9913&format=png&color=000000",
+      price: 1500,
       ammount: 1,
-      description: "Como você bebia a água pela a torneira?",
-      effect: itemEffect[0],
+      description: "Não tem internet!",
+      effect: itemEffect[3],
     },
     {
       id: 4,
       name: "Televisão",
-      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
+      image: "https://img.icons8.com/?size=100&id=9989&format=png&color=000000",
       price: 150,
       ammount: 1,
       description: "Entretenimento!",
-      effect: itemEffect[0],
+      effect: itemEffect[4],
     },
     {
       id: 5,
       name: "Rádio",
-      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
-      price: 150,
+      image: "https://img.icons8.com/?size=100&id=9410&format=png&color=000000",
+      price: 2000,
       ammount: 1,
-      description: "Não são somente notícias...",
-      effect: itemEffect[0],
+      description: "Está vindo uma coisa espetacular em sua direção!",
+      effect: itemEffect[5],
     },
     {
       id: 6,
       name: "Gato",
-      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
+      image: "https://img.icons8.com/?size=100&id=C6Z1BNfFZ4xL&format=png&color=000000",
       price: 0,
       ammount: 1,
-      description: "Tinha um gato na sua porta... Não mais.",
-      effect: itemEffect[0],
+      description: "Você adotou um gato, todo dia ele encontra 1 real no chão!",
+      effect: itemEffect[6],
     },
     {
       id: 7,
-      name: "Câmera",
-      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
-      price: 0,
-      ammount: 1,
-      description: "Algo está lá fora e precisa ser vigiado.",
-      effect: itemEffect[0],
+      name: "Cassino",
+      image: "https://img.icons8.com/?size=100&id=3umCLcxl0hDj&format=png&color=000000",
+      price: 500,
+      ammount: 100,
+      description: "Aposte 500 reais, se ganhar triplique o valor apostado, senão aumente os custos pela metade",
+      effect: itemEffect[7],
     },
     {
       id: 8,
-      name: "Deixar a porta aberta?",
-      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
-      price: 0,
-      ammount: 1,
-      description: "Você não se sente seguro.",
-      effect: itemEffect[0],
-    },
-    {
-      id: 9,
-      name: "Ir lá fora...",
-      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
-      price: 0,
-      ammount: 1,
-      description: "Você saiu da casa.",
-      effect: itemEffect[0],
-    },
-    {
-      id: 10,
-      name: "Escopeta",
-      image: "https://img.icons8.com/?size=100&id=9422&format=png&color=000000",
-      price: 0,
-      ammount: 1,
-      description: "Você se sente mais seguro.",
-      effect: itemEffect[0],
+      name: "Terminar o jogo",
+      image: "https://img.icons8.com/?size=100&id=qaDBSQJh1PHW&format=png&color=000000",
+      price: 10000,
+      ammount: 100,
+      description: "Saia de casa e seja feliz!",
+      effect: itemEffect[8],
     },
   ]);
   const eventEffect = [
@@ -181,6 +203,16 @@ function App() {
       effect: eventEffect[2]
     }
   ]);
+  const [gameOver, setGameOver] = useState([
+    {
+      message: "Você faliu!",
+      context: "O limite de 500 reais negativos foi excedido, você perdeu!",
+    },
+    {
+      message: "Você venceu!",
+      context: "Você conseguiu sair de casa, parabéns!",
+    }
+  ])
   const [currentEvent, setCurrentEvent] = useState<Event>(eventsList[0]);
   const [income, setIncome] = useState(100);
   const [expense, setExpense] = useState(20);
@@ -311,7 +343,13 @@ function App() {
       income={income}
       expense={expense} />;
     case "gameover":
-      return <GameOver onNavigate={setScreen}></GameOver>;
+      return <GameOver onNavigate={setScreen}
+      gameOver={gameOver[currentGameOver]}
+      day={day}
+      money={money}
+      income={income}
+      expense={expense}
+      items={items} />;
   }
 
   return (
