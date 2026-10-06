@@ -23,7 +23,7 @@ function Canvas({gameState, day}: Props){
     gameState.normal?setCurrentCanvas(bgLightSnow):
     gameState.rainy?setCurrentCanvas(bgLightRain):
     gameState.sunny?setCurrentCanvas(bgSunny): "";
-    videoObject.load();
+    videoObject.load()
 
     console.log(currentCanvas);
   },[day])
