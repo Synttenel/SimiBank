@@ -10,7 +10,6 @@ interface Props{
 }
 
 function VideoPlayer({ currentCanvas }: Props){
-  
   const [videoVis, setVideoVis] = useState([
     {
         name: "lightSnow",
