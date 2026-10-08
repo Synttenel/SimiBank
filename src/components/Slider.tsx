@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import Canvas from "./Canvas";
+import Inside from "./Inside";
 import type { GameState } from "./gamestate";
 
 interface Props{
@@ -39,11 +40,7 @@ function Slider({ gameState, day }: Props){
       id="sliderComponent"
       onScroll={() => setTest(prev => prev + 1)}>
         <Canvas gameState={gameState} day={day} />
-        <div className="flex flex-col gap-10 justify-top items-start bg-card-medium p-5 w-full h-full rounded-2xl min-sm: shadow-2xs snap-center shrink-0">
-            <h1 className="font-bold text-2xl">Conta</h1>
-            <h1 className="font-bold text-2xl">R$88</h1>
-            
-        </div>
+        <Inside />
         <div className="flex flex-col gap-10 justify-top items-start bg-card-medium p-5 w-full h-full rounded-2xl min-sm: shadow-2xs snap-center shrink-0">
             <h1 className="font-bold text-2xl">Conta</h1>
             <h1 className="font-bold text-2xl">R$88</h1>
