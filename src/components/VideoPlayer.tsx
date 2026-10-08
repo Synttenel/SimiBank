@@ -60,7 +60,7 @@ function VideoPlayer({ currentCanvas }: Props){
     
   return(
     <>
-      <video className="w-full min-w[800px] md:w-[100%] md:h-84  h-42 rounded-2xl snap-center object-cover "
+      <video className="w-full min-w[800px] md:w-[100%]  rounded-2xl snap-center object-cover "
         loop
         autoPlay
         muted
@@ -70,7 +70,7 @@ function VideoPlayer({ currentCanvas }: Props){
         <source src={bgLightSnow} type="video/mp4"/>
         </video>
 
-    <video className="w-full min-w[800px] md:w-[100%] md:h-84  h-42 rounded-2xl snap-center object-cover "
+    <video className="w-full min-w[800px] md:w-[100%]  rounded-2xl snap-center object-cover "
         loop
         autoPlay
         muted
@@ -82,7 +82,7 @@ function VideoPlayer({ currentCanvas }: Props){
 
 
 
-    <video className="w-full min-w[800px] md:w-[100%] md:h-84  h-42 rounded-2xl snap-center object-cover "
+    <video className="w-full min-w[800px] md:w-[100%]  rounded-2xl snap-center object-cover "
         loop
         autoPlay
         muted

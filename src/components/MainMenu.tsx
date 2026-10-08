@@ -50,17 +50,17 @@ function MainMenu({onNavigate, handleFun, name, profilePicture, day, money, card
   return (
     <>
       <EventAlert closeModal={()=> setAlertVisibility(false)} isVisible={alertVisibility} event={event} disableAlert={disableAlert} setDisableAlert={setDisableAlert} />
-      <div className="flex flex-col gap-10 justify-top items-center h-screen w-screen bg-background">
-        <ProfileBar onClickProfile={()=> onNavigate("profile")} onClickConfiguration={() => onNavigate("configuration")} name={name} profilePicture={profilePicture} day={day} />
+      <div className="flex flex-col justify-center items-center h-screen w-screen bg-black p-5">
+        {/*<ProfileBar onClickProfile={()=> onNavigate("profile")} onClickConfiguration={() => onNavigate("configuration")} name={name} profilePicture={profilePicture} day={day} />*/}
 
         
         <Slider gameState={gameState} day={day} />
 
-        <CurrencyBar onClickCurrency={() => onNavigate("currency")} money={money} />
+        {/*<CurrencyBar onClickCurrency={() => onNavigate("currency")} money={money} />*/}
 
       </div>
 
-      <NavBar onClickShop={() => onNavigate("shop")} onClickItems={() => onNavigate("items")} nextDay={() => handleFun()}   />
+      {/*<NavBar onClickShop={() => onNavigate("shop")} onClickItems={() => onNavigate("items")} nextDay={() => handleFun()}   />*/}
     </>
   )
 }

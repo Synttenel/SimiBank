@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-import bgIntro from './images/intro-simi.mp4'
+import tvMaze from './images/tv-maze-simi.mp4';
+import tvBoz from './images/tv-boz.mp4';
+import tvGalaxy from './images/tv-galaxy.mp4';
+import tvRidge from './images/tv-ridge.mp4';
+import tvGmode from './images/tv-gmod.mp4';
+import tvSecret from './images/secret-simi.mp4';
 
 interface Props{
 
@@ -10,12 +15,12 @@ function Inside({  }: Props){
 
   return(
     <>
-      <video className="w-full min-w[800px] md:w-[100%] md:h-84  h-42 rounded-2xl snap-center object-cover "
+      <video className="w-full rounded-2xl snap-center object-cover  "
         loop
         autoPlay
         muted
         >
-        <source src={bgIntro} type="video/mp4"/>
+        <source src={tvGalaxy} type="video/mp4"/>
         </video>
     </>
   )
