@@ -7,6 +7,8 @@ import tvRidge from './images/tv-ridge.mp4';
 import tvGmod from './images/tv-gmod.mp4';
 import tvSecret from './images/secret-simi.mp4';
 
+import InsideInterface from "./InsideInterface";
+
 interface Props{
 
 }
@@ -88,6 +90,10 @@ function Inside({  }: Props){
 
   return(
     <>
+
+      <div className="relative">
+      <InsideInterface />
+
       <video className="w-full rounded-2xl snap-center object-cover"
         autoPlay
         muted
@@ -142,6 +148,7 @@ function Inside({  }: Props){
         >
         <source src={tvSecret} type="video/mp4" />
       </video>
+      </div>
     </>
   )
 }
