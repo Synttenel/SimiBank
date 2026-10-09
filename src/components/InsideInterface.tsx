@@ -27,7 +27,7 @@ function InsideInterface({ }: Props){
             ???
         </div>
         <div className="w-[20%] h-[20%] bg-card-dark rounded-2xl p-5 text-center text-2xl">
-            
+            Status
         </div>
       </div>
     </>
