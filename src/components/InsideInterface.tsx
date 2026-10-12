@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useState, type Dispatch, type SetStateAction } from "react";
+import type { whereToGo } from "./whereToGo";
+import type { Screen } from "./types";
 
 interface Props{
-
+  onNavigate: Dispatch<SetStateAction<Screen>>,
+  setWhereToGo: Dispatch<SetStateAction<whereToGo>>,
 }
 
-function InsideInterface({ }: Props){
+function InsideInterface({ onNavigate, setWhereToGo }: Props){
 
   const [interfaceVis, setInterfaceVis] = useState(true);
+
+  const handleTransition = (where: whereToGo) =>{
+    setWhereToGo(where);
+    onNavigate('transition');
+  } 
+
 
   return(
     <>
@@ -14,7 +23,8 @@ function InsideInterface({ }: Props){
       style={{opacity: interfaceVis?"1.0":"0.3"}}>
         <img className="absolute right-5 top-5" src="https://img.icons8.com/?size=50&id=78831&format=png&color=ffffff"
         onClick={() => interfaceVis?setInterfaceVis(false): setInterfaceVis(true)}/>
-        <div className="w-[20%] h-[20%] bg-card-dark rounded-2xl p-5 text-center text-2xl">
+        <div className="w-[20%] h-[20%] bg-card-dark rounded-2xl p-5 text-center text-2xl"
+        onClick={() => handleTransition("tvToShop")}>
             Loja
         </div>
         <div className="w-[20%] h-[20%] bg-card-dark rounded-2xl p-5 text-center text-2xl">

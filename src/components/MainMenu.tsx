@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import type {Screen} from './types'
 import type { Event } from './Event'
 import type { GameState } from './gamestate';
+import type { whereToGo } from './whereToGo';
 
 import type { Dispatch } from "react";
 import type { SetStateAction } from "react";
@@ -19,7 +20,7 @@ import Shop from './Shop'
 import EventAlert from './EventAlert'
 
 interface Props{
-    onNavigate: (screen: Screen) => void;
+    onNavigate: Dispatch<SetStateAction<Screen>>,
     handleFun: ()=> void;
     name: string;
     profilePicture: string;
@@ -32,9 +33,10 @@ interface Props{
     setDisableAlert: Dispatch<SetStateAction<boolean>>,
     gameState: GameState,
     event: Event,
+    setWhereToGo: Dispatch<SetStateAction<whereToGo>>,
 }
 
-function MainMenu({onNavigate, handleFun, name, profilePicture, day, money, card, showAlert, setShowAlert, disableAlert, setDisableAlert, gameState, event}: Props) {
+function MainMenu({onNavigate, handleFun, name, profilePicture, day, money, card, showAlert, setShowAlert, disableAlert, setDisableAlert, gameState, event, setWhereToGo}: Props) {
 
   const [alertVisibility, setAlertVisibility] = useState(false);
 
@@ -54,7 +56,7 @@ function MainMenu({onNavigate, handleFun, name, profilePicture, day, money, card
         {/*<ProfileBar onClickProfile={()=> onNavigate("profile")} onClickConfiguration={() => onNavigate("configuration")} name={name} profilePicture={profilePicture} day={day} />*/}
 
         
-        <Slider gameState={gameState} day={day} />
+        <Slider gameState={gameState} day={day} onNavigate={onNavigate} setWhereToGo={setWhereToGo} />
 
         {/*<CurrencyBar onClickCurrency={() => onNavigate("currency")} money={money} />*/}
 

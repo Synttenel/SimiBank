@@ -1,1 +1,1 @@
-export type Screen = "menu" | "shop" | "configuration" | "items" | "start" | "profile" | "currency" | "canvas" | "gameover";
+export type Screen = "menu" | "shop" | "configuration" | "items" | "start" | "profile" | "currency" | "canvas" | "gameover" | "transition" | "kitchen";

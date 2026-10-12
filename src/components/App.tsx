@@ -3,6 +3,7 @@ import type {Screen} from './types'
 import type { ShopItem } from './shopitems'
 import type { Event } from './Event'
 import type { GameState } from './gamestate'
+import type { whereToGo } from './whereToGo'
 
 import './App.css'
 
@@ -18,6 +19,7 @@ import UserCustom from './UserCustom'
 import Items from './Items'
 import Shop from './Shop'
 import GameOver from './GameOver'
+import Transition from './Transition'
 
 function App() {
   
@@ -26,6 +28,7 @@ function App() {
   const [profilePicture, setProfilePicture] = useState("https://img.icons8.com/?size=100&id=LypZSIS7xVVW&format=png&color=000000");
   const [items, setItems] = useState<ShopItem[]>([])
   const [currentGameOver, setCurrentGameOver] = useState(0);
+  const [whereToGo, setWhereToGo] = useState<whereToGo>("tvToShop");
   const itemEffect = [
     (ammount: number) => {
       let itemName = "Caixa de Som";
@@ -308,7 +311,8 @@ function App() {
       disableAlert={disableAlert}
       setDisableAlert={setDisableAlert}
       gameState={gameState}
-      event={currentEvent} />;
+      event={currentEvent}
+      setWhereToGo={setWhereToGo} />;
     case "shop":
       return <Shop onNavigate={setScreen}
       money={money}
@@ -350,6 +354,10 @@ function App() {
       income={income}
       expense={expense}
       items={items} />;
+    case "transition":
+      return <Transition onNavigate={setScreen}
+      whereToGo={whereToGo}
+      setWhereToGo={setWhereToGo} />
   }
 
   return (

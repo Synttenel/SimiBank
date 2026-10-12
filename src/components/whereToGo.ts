@@ -1,0 +1,1 @@
+export type whereToGo = "tvToShop" | "tvToKitchen" | "tvToItems" | "shopToTv" | "kitchenToTv" | "itemsToTv";

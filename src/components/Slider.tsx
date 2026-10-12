@@ -1,15 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, type Dispatch, type SetStateAction } from "react";
 
 import Canvas from "./Canvas";
 import Inside from "./Inside";
 import type { GameState } from "./gamestate";
+import type { whereToGo } from "./whereToGo";
+import type { Screen } from "./types";
 
 interface Props{
     gameState: GameState,
     day: number,
+    onNavigate: Dispatch<SetStateAction<Screen>>,
+    setWhereToGo: Dispatch<SetStateAction<whereToGo>>,
 }
 
-function Slider({ gameState, day }: Props){
+function Slider({ gameState, day, onNavigate, setWhereToGo }: Props){
   
   if(document.getElementById("slider")){
     const slider = document.getElementById("slider");
@@ -35,7 +39,7 @@ function Slider({ gameState, day }: Props){
       <div className=" rounded-2xl grid  grid-flow-col snap-x snap-mandatory gap-10 auto-cols-[100%] overflow-hidden"
       id="slider">
         <Canvas gameState={gameState} day={day} />
-        <Inside />
+        <Inside onNavigate={onNavigate} setWhereToGo={setWhereToGo}/>
         <img className="absolute w-20 h-30 left-10 top-1/2 -translate-1/2 rounded-2xl"
         src="https://img.icons8.com/?size=100&id=1806&format=png&color=ffffff"
         onClick={() => handleScroll("left")}/>

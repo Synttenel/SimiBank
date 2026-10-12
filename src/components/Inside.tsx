@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 
 import tvMaze from './images/tv-maze-simi.mp4';
 import tvBoz from './images/tv-boz.mp4';
@@ -8,12 +8,15 @@ import tvGmod from './images/tv-gmod.mp4';
 import tvSecret from './images/secret-simi.mp4';
 
 import InsideInterface from "./InsideInterface";
+import type { whereToGo } from "./whereToGo";
+import type { Screen } from "./types";
 
 interface Props{
-
+  onNavigate: Dispatch<SetStateAction<Screen>>,
+  setWhereToGo: Dispatch<SetStateAction<whereToGo>>,
 }
 
-function Inside({  }: Props){
+function Inside({ onNavigate, setWhereToGo }: Props){
 
   const [count, setCount] = useState(0);
   const [i, setI] = useState(0);
@@ -92,7 +95,7 @@ function Inside({  }: Props){
     <>
 
       <div className="relative">
-      <InsideInterface />
+      <InsideInterface onNavigate={onNavigate} setWhereToGo={setWhereToGo}/>
 
       <video className="w-full rounded-2xl snap-center object-cover"
         autoPlay
