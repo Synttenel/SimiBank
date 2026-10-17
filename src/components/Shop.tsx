@@ -5,6 +5,9 @@ import type { ShopItem } from "./shopitems";
 import type { Dispatch } from "react";
 import type { SetStateAction } from "react";
 
+import idleShop from './images/shop-simi.mp4';
+import type { whereToGo } from "./whereToGo";
+
 interface Props{
   onNavigate: (screen: Screen) => void;
   money: number,
@@ -14,11 +17,12 @@ interface Props{
   shopItems: ShopItem[];
   setShopItems: Dispatch<SetStateAction<ShopItem[]>>
   itemEffect: (() => void)[];
+  setWhereToGo: Dispatch<SetStateAction<whereToGo>>
 
 }
 
 
-function Shop({onNavigate, money, setMoney, items, setItems, shopItems, setShopItems, itemEffect}: Props){
+function Shop({onNavigate, money, setMoney, items, setItems, shopItems, setShopItems, itemEffect, setWhereToGo}: Props){
 
   console.log(items);
   console.log(shopItems);
@@ -79,23 +83,26 @@ function Shop({onNavigate, money, setMoney, items, setItems, shopItems, setShopI
     
     console.log(element);
   }
-
+  const handleTransition = (where: whereToGo) => {
+    setWhereToGo(where);
+    onNavigate("transition");
+  } 
 
   return(
     <>
-      <div className="flex flex-col relative justify-between items-start bg-card-light p-5 w-screen h-42 rounded-b-2xl min-sm: shadow-2xs"></div>
-      <div className="absolute flex flex-col gap-10 justify-end items-end backdrop-blur-2xl z-60 left-1/2 bottom-0 -translate-x-1/2 h-screen w-screen">
-        <div className="relative flex flex-wrap gap-5 overflow-auto justify-center items-center z-50 left-1/2 bottom-0 -translate-x-1/2 p-10 rounded-t-3xl h-[95%] w-screen bg-background shadow-2xs">
+      
+      
+        <div className="w-[90%]  flex flex-wrap gap-5 justify-center items-center p-5  absolute left-1/2 top-1/2 -translate-1/2 bg-black/30 backdrop-blur-sm">
           {/*<!-- License: CC Attribution. Made by tetrisly: https://tetrisly.gumroad.com/l/freeicons -->*/}
           
           <button className="absolute right-5 top-5 bg-white rounded-2xl hover:bg-gray-300/80 cursor-pointer transition-colors duration-200 ease-in"
-          onClick={() => onNavigate("menu")}>
+          onClick={() => handleTransition("shopToTv")}>
             <svg fill="#0000000" width="35px" height="35px" viewBox="0 0 1.05 1.05" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="m0.587 0.525 0.232 -0.232a0.044 0.044 0 1 0 -0.062 -0.062L0.525 0.463 0.293 0.232a0.044 0.044 0 1 0 -0.062 0.062L0.463 0.525l-0.232 0.232a0.044 0.044 0 1 0 0.062 0.062L0.525 0.587l0.232 0.232a0.044 0.044 0 0 0 0.062 0 0.044 0.044 0 0 0 0 -0.062z"/>
             </svg>
           </button>
           
-          <h1 className="absolute left-5 top-5 text-black font-bold text-2xl underline">Loja</h1>
+          <h1 className="absolute left-5 top-5 text-white font-bold text-2xl underline">Loja</h1>
           
             {shopItems.map((shopItem, _) => (
               <div className="flex flex-col justify-center items-center gap-5 mt-20 bg-card-light p-5  rounded-2xl min-sm: shadow-2xs" key={_}>
@@ -108,12 +115,19 @@ function Shop({onNavigate, money, setMoney, items, setItems, shopItems, setShopI
                 onClick={(e) => handleBuyItem(e)}>Comprar</button>
               </div>
             ))}
-            
-          <div className="sticky flex justify-between items-center w-full bottom-0 p-2 ">
-            <h1 className="font-bold bg-card-light/70 backdrop-blur-xl rounded-2xl  p-3 shadow-2xs text-center w-full">R$ {money}</h1>
+          <div className="w-100 h-50 rounded-2xl flex justify-center items-center text-3xl  bg-card-dark text-white">
+            Conta: {money}
           </div>  
+          
         </div>
-      </div>
+        <video className="w-full rounded-2xl snap-center object-cover  "
+        id="idleShop"
+        autoPlay
+        muted
+        >
+        <source src={idleShop} type="video/mp4" />
+      </video>
+      
     </>
   )
 }

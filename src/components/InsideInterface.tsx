@@ -27,10 +27,12 @@ function InsideInterface({ onNavigate, setWhereToGo }: Props){
         onClick={() => handleTransition("tvToShop")}>
             Loja
         </div>
-        <div className="w-[20%] h-[20%] bg-card-dark rounded-2xl p-5 text-center text-2xl">
+        <div className="w-[20%] h-[20%] bg-card-dark rounded-2xl p-5 text-center text-2xl"
+        onClick={() => handleTransition("tvToKitchen")}>
             Cozinha
         </div>
-        <div className="w-[20%] h-[20%] bg-card-dark rounded-2xl p-5 text-center text-2xl">
+        <div className="w-[20%] h-[20%] bg-card-dark rounded-2xl p-5 text-center text-2xl"
+        onClick={() => handleTransition("tvToItems")}>
             Itens
         </div>
         <div className="w-[20%] h-[20%] bg-card-dark rounded-2xl p-5 text-center text-2xl">

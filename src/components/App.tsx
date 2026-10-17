@@ -20,6 +20,7 @@ import Items from './Items'
 import Shop from './Shop'
 import GameOver from './GameOver'
 import Transition from './Transition'
+import Kitchen from './kitchen'
 
 function App() {
   
@@ -217,6 +218,7 @@ function App() {
     }
   ])
   const [currentEvent, setCurrentEvent] = useState<Event>(eventsList[0]);
+  const [starve, setStarve] = useState (0);
   const [income, setIncome] = useState(100);
   const [expense, setExpense] = useState(20);
   const [money, setMoney] = useState(0);
@@ -321,14 +323,19 @@ function App() {
       setItems={setItems}
       shopItems={shopItems}
       setShopItems={setShopItems}
-      itemEffect={itemEffect} />;
+      itemEffect={itemEffect}
+      setWhereToGo={setWhereToGo} />;
+    case "kitchen":
+      return <Kitchen onNavigate={setScreen}
+      setWhereToGo={setWhereToGo} />
     case "configuration":
       return <Configuration onNavigate={setScreen}
       disableAlert={disableAlert}
       setDisableAlert={setDisableAlert} />
     case "items":
       return <Items onNavigate={setScreen} 
-      items={items}/>;
+      items={items}
+      setWhereToGo={setWhereToGo} />;
     case "start":
       return <Start onNavigate={setScreen} />;
     case "profile":
