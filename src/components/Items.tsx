@@ -41,7 +41,7 @@ function Items({onNavigate, items, setWhereToGo}: Props){
           </button>
           
           <h1 className="absolute left-5 top-5 text-white font-bold text-2xl underline">Loja</h1>
-          
+
             {items.map((item, _) => (
               <div className="relative flex flex-col justify-center items-center gap-5 mt-20 bg-card-light p-5  rounded-2xl min-sm: shadow-2xs" key={_}>
                 <img src={item.image}/>
