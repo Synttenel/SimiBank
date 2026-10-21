@@ -120,7 +120,7 @@ function Shop({onNavigate, money, setMoney, items, setItems, shopItems, setShopI
           </div>  
           
         </div>
-        <video className="w-full rounded-2xl snap-center object-cover  "
+        <video className="w-full snap-center object-cover  "
         id="idleShop"
         autoPlay
         muted

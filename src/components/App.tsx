@@ -218,7 +218,7 @@ function App() {
     }
   ])
   const [currentEvent, setCurrentEvent] = useState<Event>(eventsList[0]);
-  const [starve, setStarve] = useState (0);
+  const [hunger, setHunger] = useState (0);
   const [income, setIncome] = useState(100);
   const [expense, setExpense] = useState(20);
   const [money, setMoney] = useState(0);
@@ -306,7 +306,10 @@ function App() {
       name={name} 
       profilePicture={profilePicture}
       day={day} 
+      hunger={hunger}
       money={money} 
+      income={income}
+      expense={expense}
       card={card}
       showAlert={showAlert}
       setShowAlert={setShowAlert}

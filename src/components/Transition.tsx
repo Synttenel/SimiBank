@@ -29,7 +29,7 @@ function Transition({ onNavigate, whereToGo, setWhereToGo }: Props){
     switch(whereToGo){
         case 'tvToShop':
             return(
-            <video className="w-full rounded-2xl snap-center object-cover"
+            <video className="w-full  snap-center object-cover"
             autoPlay
             muted
             onEnded={() => onNavigate('shop')}>
@@ -38,7 +38,7 @@ function Transition({ onNavigate, whereToGo, setWhereToGo }: Props){
             )
         case 'tvToKitchen':
             return(
-            <video className="w-full rounded-2xl snap-center object-cover"
+            <video className="w-full snap-center object-cover"
             autoPlay
             muted
             onEnded={() => onNavigate('kitchen')}>
@@ -47,37 +47,42 @@ function Transition({ onNavigate, whereToGo, setWhereToGo }: Props){
             )
         case 'tvToItems':
             return(
-            <video className="w-full rounded-2xl snap-center object-cover"
+            <video className="w-full snap-center object-cover"
             autoPlay
             muted
             onEnded={() => onNavigate('items')}>
                 <source src={tvToItems} type="video/mp4" />
             </video>
+
             )
 
         case 'shopToTv':
             return(
-            <video className="w-full rounded-2xl snap-center object-cover"
+            
+            <video className="w-full  snap-center object-cover"
             autoPlay
             muted
             onEnded={() => onNavigate('menu')}>
                 <source src={shopToTv} type="video/mp4" />
             </video>
+            
             )
         
         case 'kitchenToTv':
             return(
-            <video className="w-full rounded-2xl snap-center object-cover"
+            <video className="w-full  snap-center object-cover"
             autoPlay
             muted
             onEnded={() => onNavigate('menu')}>
                 <source src={kitchenToTv} type="video/mp4" />
             </video>
+            
             )
 
         case 'itemsToTv':
             return(
-            <video className="w-full rounded-2xl snap-center object-cover"
+            
+            <video className="w-full  snap-center object-cover"
             autoPlay
             muted
             onEnded={() => onNavigate('menu')}>

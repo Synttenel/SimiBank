@@ -18,6 +18,7 @@ import NavBar from './NavBar'
 import UserCustom from './UserCustom'
 import Shop from './Shop'
 import EventAlert from './EventAlert'
+import StatusBar from './StatusBar';
 
 interface Props{
     onNavigate: Dispatch<SetStateAction<Screen>>,
@@ -25,7 +26,10 @@ interface Props{
     name: string;
     profilePicture: string;
     day: number;
+    hunger: number;
     money: number;
+    income: number;
+    expense: number;
     card: number;
     showAlert: boolean,
     setShowAlert: Dispatch<SetStateAction<boolean>>,
@@ -36,7 +40,7 @@ interface Props{
     setWhereToGo: Dispatch<SetStateAction<whereToGo>>,
 }
 
-function MainMenu({onNavigate, handleFun, name, profilePicture, day, money, card, showAlert, setShowAlert, disableAlert, setDisableAlert, gameState, event, setWhereToGo}: Props) {
+function MainMenu({onNavigate, handleFun, name, profilePicture, day, hunger, money, income, expense, card, showAlert, setShowAlert, disableAlert, setDisableAlert, gameState, event, setWhereToGo}: Props) {
 
   const [alertVisibility, setAlertVisibility] = useState(false);
 
@@ -52,10 +56,10 @@ function MainMenu({onNavigate, handleFun, name, profilePicture, day, money, card
   return (
     <>
       <EventAlert closeModal={()=> setAlertVisibility(false)} isVisible={alertVisibility} event={event} disableAlert={disableAlert} setDisableAlert={setDisableAlert} />
-      <div className="flex flex-col justify-center items-center h-screen w-screen bg-black p-5">
+      <div className="flex justify-center items-center h-screen w-screen gap-10 bg-black p-5">
         {/*<ProfileBar onClickProfile={()=> onNavigate("profile")} onClickConfiguration={() => onNavigate("configuration")} name={name} profilePicture={profilePicture} day={day} />*/}
 
-        
+        <StatusBar day={day} hunger={hunger} money={money} income={income} expense={expense} />
         <Slider gameState={gameState} day={day} onNavigate={onNavigate} setWhereToGo={setWhereToGo} />
 
         {/*<CurrencyBar onClickCurrency={() => onNavigate("currency")} money={money} />*/}
