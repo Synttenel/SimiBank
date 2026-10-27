@@ -30,12 +30,12 @@ function StatusBar({ day, hunger, money, income, expense }: Props){
 
         <div className="flex flex-col flex-wrap rounded-3xl bg-card-medium p-5">
             <div className="text-2xl">Esperança: </div>
-            <div className="text-2xl">{income}</div>
+            <div className="text-2xl">{Math.floor(income)}</div>
         </div>
 
         <div className="flex flex-col flex-wrap rounded-3xl bg-card-medium p-5">
             <div className="text-2xl">Insanidade: </div>
-            <div className="text-2xl">{expense}</div>
+            <div className="text-2xl">{Math.floor(expense)}</div>
         </div>
 
 

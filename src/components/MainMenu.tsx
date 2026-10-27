@@ -66,7 +66,7 @@ function MainMenu({onNavigate, handleFun, name, profilePicture, day, hunger, mon
 
       </div>
 
-      {/*<NavBar onClickShop={() => onNavigate("shop")} onClickItems={() => onNavigate("items")} nextDay={() => handleFun()}   />*/}
+      <NavBar onClickShop={() => onNavigate("shop")} onClickItems={() => onNavigate("items")} nextDay={() => handleFun()}   />
     </>
   )
 }

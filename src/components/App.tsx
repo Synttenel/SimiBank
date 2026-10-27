@@ -219,6 +219,7 @@ function App() {
   ])
   const [currentEvent, setCurrentEvent] = useState<Event>(eventsList[0]);
   const [hunger, setHunger] = useState (0);
+  const [energy, setEnergy] = useState (100);
   const [income, setIncome] = useState(100);
   const [expense, setExpense] = useState(20);
   const [money, setMoney] = useState(0);
